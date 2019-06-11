@@ -11,3 +11,12 @@ I will also publish Tutorial Series from this controller on my Youtube Channel :
 So anyone who wants to understand this code better, you should check it out :)
 
 Last thing for now is that i also used a free extension from Asset Store called Naughty Attributes and it is included in this project and ProBuilder as well because i used it to block out some basic prototype scene.
+
+# HOW TO USE IT
+So in order to use it in different scenes you have to make sure that you have few things
+1. There should be Input Handler script in order to make input working, you should drag the input data throught inspector
+2. Make sure to layer your Ground to be on layer that player is colliding with
+3. Make sure to have all Data dragged into correct scripts
+
+Im using scriptable objects to store data input so i can easily drag asset to script i want and use it data.
+To fill out data i use Input Handler script which basically updates the input.
