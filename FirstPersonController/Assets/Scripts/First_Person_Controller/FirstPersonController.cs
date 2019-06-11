@@ -301,6 +301,16 @@ namespace VHS
                     m_hitWall = _hitWall ? true : false;
                 }
 
+                bool CheckIfRoof() /// TO FIX
+                {
+                    Vector3 _origin = transform.position;
+                    RaycastHit _roofInfo;
+
+                    bool _hitRoof = Physics.SphereCast(_origin,raySphereRadius,Vector3.up,out _roofInfo,m_initHeight);
+
+                    return _hitRoof;
+                }
+
                 bool CanRun()
                 {
                     Vector3 _normalizedDir = Vector3.zero;
@@ -364,6 +374,10 @@ namespace VHS
 
                 void InvokeCrouchRoutine()
                 {
+                    if(movementInputData.IsCrouching)
+                        if(CheckIfRoof())
+                            return;
+
                     if(m_CrouchRoutine != null)
                         StopCoroutine(m_CrouchRoutine);
 

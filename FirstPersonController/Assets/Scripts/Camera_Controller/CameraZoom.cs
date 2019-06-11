@@ -5,7 +5,7 @@ using NaughtyAttributes;
 namespace VHS
 {    
     [System.Serializable]
-    public class CamerZoom
+    public class CameraZoom
     {
         #region Variables
 
