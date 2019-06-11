@@ -10,8 +10,7 @@ namespace VHS
             public CameraInputData cameraInputData;
             [BoxGroup("Input Data")]
             public MovementInputData movementInputData;
-            [BoxGroup("Input Data")]
-            public InteractionInputData interactionInputData;
+
         #endregion
 
         #region BuiltIn Methods
@@ -23,19 +22,12 @@ namespace VHS
 
             void Update()
             {
-                GetInteractionInput();
                 GetCameraInput();
                 GetMovementInputData();
             }
         #endregion
 
         #region Custom Methods
-            void GetInteractionInput()
-            {
-                interactionInputData.Interact = Input.GetKeyDown(KeyCode.E);
-                interactionInputData.HoldInteract = Input.GetKey(KeyCode.E);
-            }
-
             void GetCameraInput()
             {
                 cameraInputData.InputVectorX = Input.GetAxis("Mouse X");
