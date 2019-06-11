@@ -9,7 +9,7 @@ namespace VHS
             #region Data
                 [BoxGroup("Input Data")] public CameraInputData camInputData;
 
-                [BoxGroup("Custom Classes")] public CameraZoom cameraZoom;
+                [BoxGroup("Custom Classes")] public CamerZoom cameraZoom;
                 [BoxGroup("Custom Classes")] public CameraSwaying cameraSway;
 
             #endregion
