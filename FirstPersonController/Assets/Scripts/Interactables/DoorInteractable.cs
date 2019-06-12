@@ -55,12 +55,12 @@ namespace VHS
 
             if(m_doorState == DoorState.Open)
             {
-                Tooltip = "Open Door";
+                // Tooltip = "Open Door";
                 m_doorState = DoorState.Close;
             }
             else
             {
-                Tooltip = "Close Door";
+                // Tooltip = "Close Door";
                 m_doorState = DoorState.Open;
             }
 

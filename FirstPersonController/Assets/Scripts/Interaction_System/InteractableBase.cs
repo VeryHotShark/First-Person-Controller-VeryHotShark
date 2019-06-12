@@ -7,8 +7,6 @@ namespace VHS
 {
     public abstract class InteractableBase : MonoBehaviour, IInteractable
     {
-        [BoxGroup("Settings")] public string tooltip;
-        [BoxGroup("Settings")] public Transform tooltipTransform;
         [BoxGroup("Settings")] public bool multiple;
         [BoxGroup("Settings")] public bool holdInteract;
         [BoxGroup("Settings")] [ShowIf("holdInteract")] public float holdDuration;
@@ -19,14 +17,6 @@ namespace VHS
         public float HoldDuration => holdDuration;
         public bool HoldInteract => holdInteract;
         public bool Multiple => multiple;
-        public string Tooltip
-        {
-            get => tooltip;
-            set => tooltip = value;
-        }
-
-        public Transform TooltipTransform => tooltipTransform;
- 
 
         public virtual void OnInteract()
         {

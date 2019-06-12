@@ -9,8 +9,6 @@ namespace VHS
         float HoldDuration { get; }
         bool HoldInteract { get; }
         bool Multiple { get; }
-        string Tooltip { get; set;}
-        Transform TooltipTransform { get; }
 
         void OnInteract();
         bool IsInteractable();

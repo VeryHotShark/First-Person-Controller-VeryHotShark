@@ -4,8 +4,21 @@ using UnityEngine;
 
 namespace VHS
 {
-    public abstract class PickableBase : MonoBehaviour, IPickable
+    [RequireComponent(typeof(Rigidbody))]
+    public class Pickable : MonoBehaviour, IPickable
     {
+        private void Awake()
+        {
+            rigid = GetComponent<Rigidbody>();
+        }
+
+        private Rigidbody rigid;
+
+        public Rigidbody Rigid
+        {
+            get => rigid;
+            set => rigid = value;
+        }
 
         private bool Picked
         {

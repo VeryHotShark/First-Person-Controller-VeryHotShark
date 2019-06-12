@@ -9,6 +9,8 @@ namespace VHS
         #region Data
             [BoxGroup("Data")] public InteractionInputData interactionInputData;
             [BoxGroup("Data")] public InteractionData interactionData;
+            [BoxGroup("Data")] public PickableInputData pickableInputData;
+            [BoxGroup("Data")] public PickableData pickableData;
         #endregion
 
         #region Hover Data
@@ -16,9 +18,13 @@ namespace VHS
         #endregion
 
         #region Variables
-            [BoxGroup("Settings")] public int checkInterval;
-            [BoxGroup("Settings")] public float rayDistance;
-            [BoxGroup("Settings")] public LayerMask interactableLayer;
+            [BoxGroup("General Settings")] public float rayDistance;
+            [BoxGroup("General Settings")] public int checkInterval;
+
+            [BoxGroup("Interactable Settings")] public LayerMask interactableLayer;
+
+            [BoxGroup("Pickable Settings")] public LayerMask pickableLayer ;
+            [BoxGroup("Pickable Settings")] public float zDistance;
 
             #region Private
                 RaycastHit m_hitInfo;
@@ -48,6 +54,7 @@ namespace VHS
             void Update()
             {
                 CheckForInteractable();
+                CheckForPickable();
                 CheckForInput();
 
                 m_interactionUI.LookAtPlayer(transform);
@@ -61,6 +68,12 @@ namespace VHS
             }
 
             void CheckForInput()
+            {
+                CheckForInteractableInput();
+                CheckForPickableInput();
+            }
+
+            void CheckForInteractableInput()
             {
                 if(interactionData.Interactable != null)
                 {
@@ -107,6 +120,36 @@ namespace VHS
                 }
             }
 
+            void CheckForPickableInput()
+            {
+                if(!pickableData.IsEmpty())
+                {
+                    if(pickableInputData.PickClicked)
+                    {
+                        m_interactionUI.SetToolTip(null,"",0f);
+                        m_interactionUI.SetTooltipActiveState(false);
+
+                        pickableData.PickableItem.Rigid.isKinematic = true;
+                        pickableData.PickableItem.Rigid.useGravity = false;
+
+                        pickableData.PickableItem.transform.position = transform.position + transform.forward * zDistance;
+                        pickableData.PickableItem.transform.SetParent(transform);
+                    }
+
+                    if(pickableInputData.PickHold)
+                    {
+                        //pickableData.PickableItem.transform.position = transform.position + transform.forward * zDistance;
+                    }
+
+                    if(pickableInputData.PickReleased)
+                    {
+                        pickableData.PickableItem.transform.SetParent(null);
+
+                        pickableData.PickableItem.Rigid.isKinematic = false;
+                        pickableData.PickableItem.Rigid.useGravity = true;
+                    }
+                }
+            }
 
             void CheckForInteractable()
             {
@@ -118,7 +161,7 @@ namespace VHS
                     if(_hitSomething)
                     {
                         InteractableBase _interactable = m_hitInfo.transform.GetComponent<InteractableBase>();
-                        // Hoverable _hoverable = m_hitInfo.transform.GetComponent<Hoverable>();
+                        Hoverable _hoverable = m_hitInfo.transform.GetComponent<Hoverable>();
 
                         if(_interactable != null /* && _hoverable != null */)
                         {
@@ -130,7 +173,7 @@ namespace VHS
                                 {    
                                     //_hoverable.OnHoverStart(hoverMaterial);
 
-                                    m_interactionUI.SetToolTip(_interactable.TooltipTransform,_interactable.Tooltip,0f);
+                                    m_interactionUI.SetToolTip(_hoverable.TooltipTransform,_hoverable.Tooltip,0f);
                                     m_interactionUI.SetTooltipActiveState(true);
                                 }
                             }
@@ -140,7 +183,7 @@ namespace VHS
                                 {
                                     if(!m_interactionUI.IsTooltipActive())
                                     {
-                                        m_interactionUI.SetToolTip(_interactable.TooltipTransform,_interactable.Tooltip,0f);
+                                        m_interactionUI.SetToolTip(_hoverable.TooltipTransform,_hoverable.Tooltip,0f);
                                         m_interactionUI.SetTooltipActiveState(true);
                                     }
                                 }
@@ -156,7 +199,44 @@ namespace VHS
                             // if(_hoverable != null)
                             //     _hoverable.OnHoverEnd();
 
-                            interactionData.Interactable = null;
+                            interactionData.ResetData();
+                            m_interactionUI.SetToolTip(null,"",0f);
+                            m_interactionUI.SetTooltipActiveState(false);
+                        }
+                    }
+
+                    
+                    Debug.DrawRay(transform.position,transform.forward,_hitSomething ? Color.green : Color.red);
+                }
+            }
+
+            void CheckForPickable()
+            {
+                if(Time.frameCount % checkInterval == 0)
+                {
+                    Ray _ray = new Ray(transform.position,transform.forward);
+                    bool _hitSomething = Physics.Raycast(_ray,out m_hitInfo,rayDistance,pickableLayer);
+
+                    if(_hitSomething)
+                    {
+                        Pickable _pickable = m_hitInfo.transform.GetComponent<Pickable>();
+                        Hoverable _hoverable = m_hitInfo.transform.GetComponent<Hoverable>();
+
+                        if(_pickable != null /* && _hoverable != null */)
+                        {
+                            if(!pickableData.IsSamePickable(_pickable))
+                            {
+                                pickableData.PickableItem = _pickable;
+                                m_interactionUI.SetToolTip(_hoverable.TooltipTransform,_hoverable.Tooltip,0f);
+                                m_interactionUI.SetTooltipActiveState(true);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if(!pickableData.IsEmpty())
+                        {
+                            pickableData.ResetData();
                             m_interactionUI.SetToolTip(null,"",0f);
                             m_interactionUI.SetTooltipActiveState(false);
                         }
