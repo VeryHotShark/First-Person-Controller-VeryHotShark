@@ -6,16 +6,16 @@ namespace VHS
     public class MovementInputData : ScriptableObject
     {
         #region Data
-            Vector2 m_inputVector;
+            protected Vector2 m_inputVector;
 
-            bool m_isRunning;
-            bool m_isCrouching;
+            protected bool m_isRunning;
+            protected bool m_isCrouching;
 
-            bool m_crouchClicked;
-            bool m_jumpClicked;
+            protected bool m_crouchClicked;
+            protected bool m_jumpClicked;
 
-            bool m_runClicked;
-            bool m_runReleased;
+            protected bool m_runClicked;
+            protected bool m_runReleased;
         #endregion
 
         #region Properties
@@ -69,7 +69,7 @@ namespace VHS
         #endregion
 
         #region Custom Methods
-            public void ResetInput()
+            public virtual void ResetInput()
             {
                 m_inputVector = Vector2.zero;
                 
@@ -79,7 +79,7 @@ namespace VHS
                 m_crouchClicked = false;
                 m_jumpClicked = false;
                 m_runClicked = false;
-                m_runReleased =false;
+                m_runReleased = false;
             }
         #endregion
     }
