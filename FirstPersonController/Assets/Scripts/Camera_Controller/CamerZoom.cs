@@ -22,22 +22,22 @@ namespace VHS
             #endregion
 
             #region Private
-                float m_initFOV;
-                CameraInputData m_camInputData;
-                MovementInputData m_movementInputData;
+                protected float m_initFOV;
+                protected CameraInputData m_camInputData;
+                protected MovementInputData m_movementInputData;
 
                 #region Components
-                    Camera m_cam;
+                    protected Camera m_cam;
                 #endregion
                 #region Reference/Cache
-                    IEnumerator m_ChangeFOVRoutine;
-                    IEnumerator m_ChangeRunFOVRoutine;
+                    protected IEnumerator m_ChangeFOVRoutine;
+                    protected IEnumerator m_ChangeRunFOVRoutine;
                 #endregion
             #endregion
         #endregion
     
         #region Custom Methods
-            public void Init(Camera _cam, CameraInputData _data)
+            public virtual void Init(Camera _cam, CameraInputData _data)
             {
                 m_camInputData = _data;
 
@@ -45,7 +45,7 @@ namespace VHS
                 m_initFOV = m_cam.fieldOfView;
             }
 
-            public void ChangeFOV(MonoBehaviour _mono)
+            public virtual void ChangeFOV(MonoBehaviour _mono)
             {
                 if(m_ChangeFOVRoutine != null)
                     _mono.StopCoroutine(m_ChangeFOVRoutine);
@@ -54,7 +54,16 @@ namespace VHS
                 _mono.StartCoroutine(m_ChangeFOVRoutine);
             }
 
-            IEnumerator ChangeFOVRoutine()
+            public virtual void ChangeRunFOV(bool _returning,MonoBehaviour _mono)
+            {
+                if(m_ChangeRunFOVRoutine != null)
+                    _mono.StopCoroutine(m_ChangeRunFOVRoutine);
+
+                m_ChangeRunFOVRoutine = ChangeRunFOVRoutine(_returning);
+                _mono.StartCoroutine(m_ChangeRunFOVRoutine);
+            }
+
+            protected virtual IEnumerator ChangeFOVRoutine()
             {
                 float _percent = 0f;
                 float _smoothPercent = 0f;
@@ -75,16 +84,7 @@ namespace VHS
                 }
             }
 
-            public void ChangeRunFOV(bool _returning,MonoBehaviour _mono)
-            {
-                if(m_ChangeRunFOVRoutine != null)
-                    _mono.StopCoroutine(m_ChangeRunFOVRoutine);
-
-                m_ChangeRunFOVRoutine = ChangeRunFOVRoutine(_returning);
-                _mono.StartCoroutine(m_ChangeRunFOVRoutine);
-            }
-
-            IEnumerator ChangeRunFOVRoutine(bool _returning)
+            protected virtual IEnumerator ChangeRunFOVRoutine(bool _returning)
             {
                 float _percent = 0f;
                 float _smoothPercent = 0f;

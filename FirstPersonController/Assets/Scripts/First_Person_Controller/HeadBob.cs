@@ -5,14 +5,14 @@ namespace  VHS
     public class HeadBob
     {
         #region Variables
-            HeadBobData m_data;
+            protected HeadBobData m_data;
 
-            float m_xScroll;
-            float m_yScroll;
+            protected float m_xScroll;
+            protected float m_yScroll;
 
-            bool m_resetted;
-            Vector3 m_finalOffset;
-            float m_currentStateHeight = 0f;
+            protected bool m_resetted;
+            protected Vector3 m_finalOffset;
+            protected float m_currentStateHeight = 0f;
         #endregion
 
         #region Properties
@@ -40,7 +40,7 @@ namespace  VHS
                 m_finalOffset = Vector3.zero;
             }
 
-            public void ScrollHeadBob(bool _running, bool _crouching, Vector2 _input)
+            public virtual void ScrollHeadBob(bool _running, bool _crouching, Vector2 _input)
             {
                 m_resetted = false;
 
@@ -71,7 +71,7 @@ namespace  VHS
                 m_finalOffset.y = _yValue * m_data.yAmplitude * _amplitudeMultiplier * _additionalMultiplier;
             }
 
-            public void ResetHeadBob()
+            public virtual void ResetHeadBob()
             {
                 m_resetted = true;
 

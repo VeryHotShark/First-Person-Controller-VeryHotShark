@@ -5,10 +5,10 @@ namespace VHS
     public class PerlinNoiseScroller
     {
         #region Variables
-            PerlinNoiseData m_data;
+            protected PerlinNoiseData m_data;
 
-            Vector3 m_noiseOffset;
-            Vector3 m_noise;
+            protected Vector3 m_noiseOffset;
+            protected Vector3 m_noise;
         #endregion
 
         #region Properties
@@ -27,7 +27,7 @@ namespace VHS
                 m_noiseOffset.z = Random.Range(0f,_rand);
             }
 
-            public void UpdateNoise()
+            public virtual void UpdateNoise()
             {
                 float _scrollOffset = Time.deltaTime * m_data.frequency;
 

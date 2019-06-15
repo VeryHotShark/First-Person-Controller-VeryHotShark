@@ -83,71 +83,71 @@ namespace VHS
             #endregion
             #region Private
                 #region Components / Custom Classes
-                    CharacterController m_characterController;
-                    Transform m_yawTransform;
-                    Transform m_camTransform;
-                    HeadBob m_headBob;
-                    CameraController m_cameraController;
+                    protected CharacterController m_characterController;
+                    protected Transform m_yawTransform;
+                    protected Transform m_camTransform;
+                    protected HeadBob m_headBob;
+                    protected CameraController m_cameraController;
                 #endregion
 
                 #region Debug/Cache
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] Vector2 m_inputVector;
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] Vector2 m_smoothInputVector;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] protected Vector2 m_inputVector;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] protected Vector2 m_smoothInputVector;
 
                     [Space]
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] Vector3 m_finalMoveDir;
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] Vector3 m_smoothFinalMoveDir;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] protected Vector3 m_finalMoveDir;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] protected Vector3 m_smoothFinalMoveDir;
                     [Space]
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] Vector3 m_finalMoveVector;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] protected Vector3 m_finalMoveVector;
 
                     [Space]
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] float m_currentSpeed;
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] float m_smoothCurrentSpeed;
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] float m_finalSmoothCurrentSpeed;
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] float m_walkRunSpeedDifference;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] protected float m_currentSpeed;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] protected float m_smoothCurrentSpeed;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] protected float m_finalSmoothCurrentSpeed;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] protected float m_walkRunSpeedDifference;
 
                     [Space]
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] float m_finalRayLength;
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] bool m_hitWall;
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] bool m_isGrounded;
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] bool m_previouslyGrounded;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] protected float m_finalRayLength;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] protected bool m_hitWall;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] protected bool m_isGrounded;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] protected bool m_previouslyGrounded;
 
                     [Space]
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] float m_initHeight;
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] float m_crouchHeight;
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] Vector3 m_initCenter;
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] Vector3 m_crouchCenter;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] protected float m_initHeight;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] protected float m_crouchHeight;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] protected Vector3 m_initCenter;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] protected Vector3 m_crouchCenter;
                     [Space]
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] float m_initCamHeight;
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] float m_crouchCamHeight;
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] float m_crouchStandHeightDifference;
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] bool m_duringCrouchAnimation;
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] bool m_duringRunAnimation;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] protected float m_initCamHeight;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] protected float m_crouchCamHeight;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] protected float m_crouchStandHeightDifference;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] protected bool m_duringCrouchAnimation;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] protected bool m_duringRunAnimation;
                     [Space]
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] float m_inAirTimer;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] protected float m_inAirTimer;
 
                     [Space]
-                    [BoxGroup("DEBUG")][ShowIf("experimental")][SerializeField][ReadOnly] float m_inputVectorMagnitude;
-                    [BoxGroup("DEBUG")][ShowIf("experimental")][SerializeField][ReadOnly] float m_smoothInputVectorMagnitude;
+                    [BoxGroup("DEBUG")][ShowIf("experimental")][SerializeField][ReadOnly] protected float m_inputVectorMagnitude;
+                    [BoxGroup("DEBUG")][ShowIf("experimental")][SerializeField][ReadOnly] protected float m_smoothInputVectorMagnitude;
                 #endregion
             
                 #region Cache Non Serialized
-                    RaycastHit m_hitInfo;
-                    IEnumerator m_CrouchRoutine;
-                    IEnumerator m_LandRoutine;
+                    protected RaycastHit m_hitInfo;
+                    protected IEnumerator m_CrouchRoutine;
+                    protected IEnumerator m_LandRoutine;
                 #endregion
             #endregion
         
         #endregion
 
         #region BuiltIn Methods     
-            void Start()
+            protected virtual void Start()
             {
                 GetComponents();
                 InitVariables();
             }
 
-            void Update()
+            protected virtual void Update()
             {
 
                 if(m_yawTransform != null)
@@ -188,7 +188,7 @@ namespace VHS
 
             /*
             
-                private void OnDrawGizmos()
+                protected virtual void OnDrawGizmos()
                 {
                     Gizmos.color = Color.yellow;
                     Gizmos.DrawWireSphere((transform.position + m_characterController.center) - Vector3.up * m_finalRayLength, raySphereRadius);
@@ -200,7 +200,7 @@ namespace VHS
 
         #region Custom Methods
             #region Initialize Methods    
-                void GetComponents()
+                protected virtual void GetComponents()
                 {
                     m_characterController = GetComponent<CharacterController>();
                     m_cameraController = GetComponentInChildren<CameraController>();
@@ -209,7 +209,7 @@ namespace VHS
                     m_headBob = new HeadBob(headBobData, moveBackwardsSpeedPercent, moveSideSpeedPercent);
                 }
 
-                void InitVariables()
+                protected virtual void InitVariables()
                 {   
                     // Calculate where our character center should be based on height and skin width
                     m_characterController.center = new Vector3(0f,m_characterController.height / 2f + m_characterController.skinWidth,0f);
@@ -239,14 +239,14 @@ namespace VHS
             #endregion
 
             #region Smoothing Methods
-                void SmoothInput()
+                protected virtual void SmoothInput()
                 {
                     m_inputVector = movementInputData.InputVector.normalized;
                     m_smoothInputVector = Vector2.Lerp(m_smoothInputVector,m_inputVector,Time.deltaTime * smoothInputSpeed);
                     //Debug.DrawRay(transform.position, new Vector3(m_smoothInputVector.x,0f,m_smoothInputVector.y), Color.green);
                 }
 
-                void SmoothSpeed()
+                protected virtual void SmoothSpeed()
                 {
                     m_smoothCurrentSpeed = Mathf.Lerp(m_smoothCurrentSpeed, m_currentSpeed, Time.deltaTime * smoothVelocitySpeed);
 
@@ -261,14 +261,14 @@ namespace VHS
                     }
                 }
 
-                void SmoothDir()
+                protected virtual void SmoothDir()
                 {
 
                     m_smoothFinalMoveDir = Vector3.Lerp(m_smoothFinalMoveDir, m_finalMoveDir, Time.deltaTime * smoothFinalDirectionSpeed);
                     Debug.DrawRay(transform.position, m_smoothFinalMoveDir, Color.yellow);
                 }
                 
-                void SmoothInputMagnitude()
+                protected virtual void SmoothInputMagnitude()
                 {
                     m_inputVectorMagnitude = m_inputVector.magnitude;
                     m_smoothInputVectorMagnitude = Mathf.Lerp(m_smoothInputVectorMagnitude, m_inputVectorMagnitude, Time.deltaTime * smoothInputMagnitudeSpeed);
@@ -276,7 +276,7 @@ namespace VHS
             #endregion
 
             #region Locomotion Calculation Methods
-                void CheckIfGrounded()
+                protected virtual void CheckIfGrounded()
                 {
                     Vector3 _origin = transform.position + m_characterController.center;
 
@@ -286,7 +286,7 @@ namespace VHS
                     m_isGrounded = _hitGround ? true : false;
                 }
 
-                void CheckIfWall()
+                protected virtual void CheckIfWall()
                 {
                     
                     Vector3 _origin = transform.position + m_characterController.center;
@@ -301,7 +301,7 @@ namespace VHS
                     m_hitWall = _hitWall ? true : false;
                 }
 
-                bool CanRun()
+                protected virtual bool CanRun()
                 {
                     Vector3 _normalizedDir = Vector3.zero;
 
@@ -312,7 +312,7 @@ namespace VHS
                     return _dot >= canRunThreshold && !movementInputData.IsCrouching ? true : false;
                 }
 
-                void CalculateMovementDirection()
+                protected virtual void CalculateMovementDirection()
                 {
 
                     Vector3 _vDir = transform.forward * m_smoothInputVector.y;
@@ -324,7 +324,7 @@ namespace VHS
                     m_finalMoveDir = _flattenDir;
                 }
 
-                Vector3 FlattenVectorOnSlopes(Vector3 _vectorToFlat)
+                protected virtual Vector3 FlattenVectorOnSlopes(Vector3 _vectorToFlat)
                 {
                     if(m_isGrounded)
                         _vectorToFlat = Vector3.ProjectOnPlane(_vectorToFlat,m_hitInfo.normal);
@@ -332,7 +332,7 @@ namespace VHS
                     return _vectorToFlat;
                 }
 
-                void CalculateSpeed()
+                protected virtual void CalculateSpeed()
                 {
                     m_currentSpeed = movementInputData.IsRunning && CanRun() ? runSpeed : walkSpeed;
                     m_currentSpeed = movementInputData.IsCrouching ? crouchSpeed : m_currentSpeed;
@@ -341,7 +341,7 @@ namespace VHS
                     m_currentSpeed = movementInputData.InputVector.x != 0 && movementInputData.InputVector.y ==  0 ? m_currentSpeed * moveSideSpeedPercent :  m_currentSpeed;
                 }
 
-                void CalculateFinalMovement()
+                protected virtual void CalculateFinalMovement()
                 {
                     float _smoothInputVectorMagnitude = experimental ? m_smoothInputVectorMagnitude : 1f;
                     Vector3 _finalVector = m_smoothFinalMoveDir * m_finalSmoothCurrentSpeed * _smoothInputVectorMagnitude;
@@ -356,13 +356,13 @@ namespace VHS
             #endregion
 
             #region Crouching Methods
-                void HandleCrouch()
+                protected virtual void HandleCrouch()
                 {
                     if(movementInputData.CrouchClicked && m_isGrounded)
                         InvokeCrouchRoutine();
                 }
 
-                void InvokeCrouchRoutine()
+                protected virtual void InvokeCrouchRoutine()
                 {
                     if(m_CrouchRoutine != null)
                         StopCoroutine(m_CrouchRoutine);
@@ -371,7 +371,7 @@ namespace VHS
                     StartCoroutine(m_CrouchRoutine);
                 }
 
-                IEnumerator CrouchRoutine()
+                protected virtual IEnumerator CrouchRoutine()
                 {
                     m_duringCrouchAnimation = true;
 
@@ -413,7 +413,7 @@ namespace VHS
             #endregion
 
             #region Landing Methods
-                void HandleLanding()
+                protected virtual void HandleLanding()
                 {
                     if(!m_previouslyGrounded && m_isGrounded)
                     {
@@ -421,7 +421,7 @@ namespace VHS
                     }
                 }
 
-                void InvokeLandingRoutine()
+                protected virtual void InvokeLandingRoutine()
                 {
                     if(m_LandRoutine != null)
                         StopCoroutine(m_LandRoutine);
@@ -430,7 +430,7 @@ namespace VHS
                     StartCoroutine(m_LandRoutine);
                 }
 
-                IEnumerator LandingRoutine()
+                protected virtual IEnumerator LandingRoutine()
                 {
                     float _percent = 0f;
                     float _landAmount = 0f;
@@ -457,7 +457,7 @@ namespace VHS
 
             #region Locomotion Apply Methods
 
-                void HandleHeadBob()
+                protected virtual void HandleHeadBob()
                 {
                     
                     if(movementInputData.HasInput && m_isGrounded  && !m_hitWall)
@@ -482,12 +482,12 @@ namespace VHS
                     //m_camTransform.localPosition = Vector3.Lerp(m_camTransform.localPosition,m_headBob.FinalOffset,Time.deltaTime * smoothHeadBobSpeed);
                 }
 
-                void HandleCameraSway()
+                protected virtual void HandleCameraSway()
                 {
                     m_cameraController.HandleSway(m_smoothInputVector,movementInputData.InputVector.x);
                 }
 
-                void HandleRunFOV()
+                protected virtual void HandleRunFOV()
                 {
                     if(movementInputData.HasInput && m_isGrounded  && !m_hitWall)
                     {
@@ -513,7 +513,7 @@ namespace VHS
                         }
                     }
                 }
-                void HandleJump()
+                protected virtual void HandleJump()
                 {
                     if(movementInputData.JumpClicked && !movementInputData.IsCrouching)
                     {
@@ -524,7 +524,7 @@ namespace VHS
                         m_isGrounded = false;
                     }
                 }
-                void ApplyGravity()
+                protected virtual void ApplyGravity()
                 {
                     if(m_characterController.isGrounded) // if we would use our own m_isGrounded it would not work that good, this one is more precise
                     {
@@ -540,12 +540,12 @@ namespace VHS
                     }
                 }
 
-                void ApplyMovement()
+                protected virtual void ApplyMovement()
                 {
                     m_characterController.Move(m_finalMoveVector * Time.deltaTime);
                 }
 
-                void RotateTowardsCamera()
+                protected virtual void RotateTowardsCamera()
                 {
                     Quaternion _currentRot = transform.rotation;
                     Quaternion _desiredRot = m_yawTransform.rotation;
