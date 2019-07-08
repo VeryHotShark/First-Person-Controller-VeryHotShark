@@ -14,13 +14,13 @@ namespace VHS
         #endregion
 
         #region BuiltIn Methods
-            void Start()
+            protected virtual void Start()
             {
                 cameraInputData.ResetInput();
                 movementInputData.ResetInput();
             }
 
-            void Update()
+            protected virtual void Update()
             {
                 GetCameraInput();
                 GetMovementInputData();
@@ -28,7 +28,7 @@ namespace VHS
         #endregion
 
         #region Custom Methods
-            void GetCameraInput()
+            protected virtual void GetCameraInput()
             {
                 cameraInputData.InputVectorX = Input.GetAxis("Mouse X");
                 cameraInputData.InputVectorY = Input.GetAxis("Mouse Y");
@@ -37,7 +37,7 @@ namespace VHS
                 cameraInputData.ZoomReleased = Input.GetMouseButtonUp(1);
             }
 
-            void GetMovementInputData()
+            protected virtual void GetMovementInputData()
             {
                 movementInputData.InputVectorX = Input.GetAxisRaw("Horizontal");
                 movementInputData.InputVectorY = Input.GetAxisRaw("Vertical");

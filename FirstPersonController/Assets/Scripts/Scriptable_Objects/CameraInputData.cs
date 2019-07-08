@@ -7,10 +7,10 @@ namespace VHS
     public class CameraInputData : ScriptableObject
     {
         #region Data
-            Vector2 m_inputVector;
-            bool m_isZooming;
-            bool m_zoomClicked;
-            bool m_zoomReleased;
+            protected Vector2 m_inputVector;
+            protected bool m_isZooming;
+            protected bool m_zoomClicked;
+            protected bool m_zoomReleased;
         #endregion
 
         #region Properties
@@ -45,7 +45,7 @@ namespace VHS
         #endregion
 
         #region Custom Methods
-            public void ResetInput()
+            public virtual void ResetInput()
             {
                 m_inputVector = Vector2.zero;
                 m_isZooming = false;
