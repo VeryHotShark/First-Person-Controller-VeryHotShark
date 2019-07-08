@@ -55,20 +55,12 @@ namespace VHS
 
             if(m_doorState == DoorState.Open)
             {
-<<<<<<< HEAD
                 // Tooltip = "Open Door";
-=======
-                Tooltip = "Open Door";
->>>>>>> parent of 391627a... Revert "InteractionSystem"
                 m_doorState = DoorState.Close;
             }
             else
             {
-<<<<<<< HEAD
                 // Tooltip = "Close Door";
-=======
-                Tooltip = "Close Door";
->>>>>>> parent of 391627a... Revert "InteractionSystem"
                 m_doorState = DoorState.Open;
             }
 
