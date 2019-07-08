@@ -12,8 +12,11 @@ namespace VHS
             public MovementInputData movementInputData;
             [BoxGroup("Input Data")]
             public InteractionInputData interactionInputData;
+<<<<<<< HEAD
             [BoxGroup("Input Data")]
             public PickableInputData pickableInputData;
+=======
+>>>>>>> parent of 391627a... Revert "InteractionSystem"
         #endregion
 
         #region BuiltIn Methods
@@ -26,7 +29,10 @@ namespace VHS
             void Update()
             {
                 GetInteractionInput();
+<<<<<<< HEAD
                 GetPickableInput();
+=======
+>>>>>>> parent of 391627a... Revert "InteractionSystem"
                 GetCameraInput();
                 GetMovementInputData();
             }
@@ -35,12 +41,16 @@ namespace VHS
         #region Custom Methods
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 391627a... Revert "InteractionSystem"
             void GetInteractionInput()
             {
                 interactionInputData.Interact = Input.GetKeyDown(KeyCode.E);
                 interactionInputData.HoldInteract = Input.GetKey(KeyCode.E);
             }
 
+<<<<<<< HEAD
             void GetPickableInput()
             {
                 pickableInputData.PickClicked = Input.GetMouseButtonDown(0);
@@ -52,6 +62,8 @@ namespace VHS
 >>>>>>> parent of e1cbcd5... Marked all methods as virtual, marked private fields and methods as Protected to allow for extension via Inheritance
 =======
 >>>>>>> parent of 45e9ca2... Merge pull request #2 from beardordie/master
+=======
+>>>>>>> parent of 391627a... Revert "InteractionSystem"
             void GetCameraInput()
             {
                 cameraInputData.InputVectorX = Input.GetAxis("Mouse X");

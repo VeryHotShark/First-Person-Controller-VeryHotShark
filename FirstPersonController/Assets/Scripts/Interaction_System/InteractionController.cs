@@ -9,8 +9,11 @@ namespace VHS
         #region Data
             [BoxGroup("Data")] public InteractionInputData interactionInputData;
             [BoxGroup("Data")] public InteractionData interactionData;
+<<<<<<< HEAD
             [BoxGroup("Data")] public PickableInputData pickableInputData;
             [BoxGroup("Data")] public PickableData pickableData;
+=======
+>>>>>>> parent of 391627a... Revert "InteractionSystem"
         #endregion
 
         #region Hover Data
@@ -18,6 +21,7 @@ namespace VHS
         #endregion
 
         #region Variables
+<<<<<<< HEAD
             [BoxGroup("General Settings")] public float rayDistance;
             [BoxGroup("General Settings")] public int checkInterval;
 
@@ -25,6 +29,11 @@ namespace VHS
 
             [BoxGroup("Pickable Settings")] public LayerMask pickableLayer ;
             [BoxGroup("Pickable Settings")] public float zDistance;
+=======
+            [BoxGroup("Settings")] public int checkInterval;
+            [BoxGroup("Settings")] public float rayDistance;
+            [BoxGroup("Settings")] public LayerMask interactableLayer;
+>>>>>>> parent of 391627a... Revert "InteractionSystem"
 
             #region Private
                 RaycastHit m_hitInfo;
@@ -54,7 +63,10 @@ namespace VHS
             void Update()
             {
                 CheckForInteractable();
+<<<<<<< HEAD
                 CheckForPickable();
+=======
+>>>>>>> parent of 391627a... Revert "InteractionSystem"
                 CheckForInput();
 
                 m_interactionUI.LookAtPlayer(transform);
@@ -69,12 +81,15 @@ namespace VHS
 
             void CheckForInput()
             {
+<<<<<<< HEAD
                 CheckForInteractableInput();
                 CheckForPickableInput();
             }
 
             void CheckForInteractableInput()
             {
+=======
+>>>>>>> parent of 391627a... Revert "InteractionSystem"
                 if(interactionData.Interactable != null)
                 {
                     if(interactionData.Interactable.IsInteractable())
@@ -120,6 +135,7 @@ namespace VHS
                 }
             }
 
+<<<<<<< HEAD
             void CheckForPickableInput()
             {
                 if(!pickableData.IsEmpty())
@@ -150,6 +166,8 @@ namespace VHS
                     }
                 }
             }
+=======
+>>>>>>> parent of 391627a... Revert "InteractionSystem"
 
             void CheckForInteractable()
             {
@@ -161,7 +179,11 @@ namespace VHS
                     if(_hitSomething)
                     {
                         InteractableBase _interactable = m_hitInfo.transform.GetComponent<InteractableBase>();
+<<<<<<< HEAD
                         Hoverable _hoverable = m_hitInfo.transform.GetComponent<Hoverable>();
+=======
+                        // Hoverable _hoverable = m_hitInfo.transform.GetComponent<Hoverable>();
+>>>>>>> parent of 391627a... Revert "InteractionSystem"
 
                         if(_interactable != null /* && _hoverable != null */)
                         {
@@ -173,7 +195,11 @@ namespace VHS
                                 {    
                                     //_hoverable.OnHoverStart(hoverMaterial);
 
+<<<<<<< HEAD
                                     m_interactionUI.SetToolTip(_hoverable.TooltipTransform,_hoverable.Tooltip,0f);
+=======
+                                    m_interactionUI.SetToolTip(_interactable.TooltipTransform,_interactable.Tooltip,0f);
+>>>>>>> parent of 391627a... Revert "InteractionSystem"
                                     m_interactionUI.SetTooltipActiveState(true);
                                 }
                             }
@@ -183,7 +209,11 @@ namespace VHS
                                 {
                                     if(!m_interactionUI.IsTooltipActive())
                                     {
+<<<<<<< HEAD
                                         m_interactionUI.SetToolTip(_hoverable.TooltipTransform,_hoverable.Tooltip,0f);
+=======
+                                        m_interactionUI.SetToolTip(_interactable.TooltipTransform,_interactable.Tooltip,0f);
+>>>>>>> parent of 391627a... Revert "InteractionSystem"
                                         m_interactionUI.SetTooltipActiveState(true);
                                     }
                                 }
@@ -199,6 +229,7 @@ namespace VHS
                             // if(_hoverable != null)
                             //     _hoverable.OnHoverEnd();
 
+<<<<<<< HEAD
                             interactionData.ResetData();
                             m_interactionUI.SetToolTip(null,"",0f);
                             m_interactionUI.SetTooltipActiveState(false);
@@ -237,6 +268,9 @@ namespace VHS
                         if(!pickableData.IsEmpty())
                         {
                             pickableData.ResetData();
+=======
+                            interactionData.Interactable = null;
+>>>>>>> parent of 391627a... Revert "InteractionSystem"
                             m_interactionUI.SetToolTip(null,"",0f);
                             m_interactionUI.SetTooltipActiveState(false);
                         }
