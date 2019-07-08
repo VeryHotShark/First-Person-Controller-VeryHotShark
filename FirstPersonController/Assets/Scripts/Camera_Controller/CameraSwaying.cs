@@ -15,23 +15,23 @@ namespace VHS
             [BoxGroup("Sway Settings")] public AnimationCurve swayCurve;
 
             #region Private
-                protected Transform m_camTransform;
-                protected float _scrollSpeed;
+                Transform m_camTransform;
+                float _scrollSpeed;
 
-                protected float m_xAmountThisFrame;
-                protected float m_xAmountPreviousFrame;
+                float m_xAmountThisFrame;
+                float m_xAmountPreviousFrame;
 
-                protected bool m_diffrentDirection;
+                bool m_diffrentDirection;
             #endregion
         #endregion
 
         #region Custom Methods
-            public virtual void Init(Transform _cam)
+            public void Init(Transform _cam)
             {
                 m_camTransform = _cam;
             }
 
-            public virtual void SwayPlayer(Vector3 _inputVector, float _rawXInput)
+            public void SwayPlayer(Vector3 _inputVector, float _rawXInput)
             {
                 float _xAmount = _inputVector.x;
 
@@ -55,6 +55,7 @@ namespace VHS
                 }
 
                 _scrollSpeed = Mathf.Clamp(_scrollSpeed,-1f,1f);
+                //Debug.Log(_scrollSpeed);
 
                 float _swayFinalAmount;
 

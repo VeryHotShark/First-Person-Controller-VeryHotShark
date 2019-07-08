@@ -11,6 +11,7 @@ namespace VHS
 
                 [BoxGroup("Custom Classes")] public CamerZoom cameraZoom;
                 [BoxGroup("Custom Classes")] public CameraSwaying cameraSway;
+
             #endregion
 
             #region Settings
@@ -21,29 +22,29 @@ namespace VHS
             #endregion
 
             #region Private
-                protected float m_yaw;
-                protected float m_pitch;
+                float m_yaw;
+                float m_pitch;
 
-                protected float m_desiredYaw;
-                protected float m_desiredPitch;
+                float m_desiredYaw;
+                float m_desiredPitch;
 
                 #region Components                    
-                    protected Transform m_pitchTranform;
-                    protected Camera m_cam;
+                    Transform m_pitchTranform;
+                    Camera m_cam;
                 #endregion
             #endregion
             
         #endregion
 
         #region BuiltIn Methods     
-            protected virtual void Start()
+            void Start()
             {
                 GetComponents();
                 InitComponents();
                 ChangeCursorState();
             }
 
-            protected virtual void LateUpdate()
+            void LateUpdate()
             {
                 CalculateRotation();
                 SmoothRotation();
@@ -53,19 +54,19 @@ namespace VHS
         #endregion
 
         #region Custom Methods
-            protected virtual void GetComponents()
+            void GetComponents()
             {
                 m_pitchTranform = transform.GetChild(0).transform;
                 m_cam = GetComponentInChildren<Camera>();
             }
 
-            protected virtual void InitComponents()
+            void InitComponents()
             {
                 cameraZoom.Init(m_cam, camInputData);
                 cameraSway.Init(m_cam.transform);
             }
 
-            protected virtual void CalculateRotation()
+            void CalculateRotation()
             {
                 m_desiredYaw += camInputData.InputVector.x * sensitivity.x * Time.deltaTime;
                 m_desiredPitch -= camInputData.InputVector.y * sensitivity.y * Time.deltaTime;
@@ -73,41 +74,40 @@ namespace VHS
                 m_desiredPitch = Mathf.Clamp(m_desiredPitch,lookAngleMinMax.x,lookAngleMinMax.y);
             }
 
-            protected virtual void SmoothRotation()
+            void SmoothRotation()
             {
                 m_yaw = Mathf.Lerp(m_yaw,m_desiredYaw, smoothAmount.x * Time.deltaTime);
                 m_pitch = Mathf.Lerp(m_pitch,m_desiredPitch, smoothAmount.y * Time.deltaTime);
             }
 
-            protected virtual void ApplyRotation()
+            void ApplyRotation()
             {
                 transform.eulerAngles = new Vector3(0f,m_yaw,0f);
                 m_pitchTranform.localEulerAngles = new Vector3(m_pitch,0f,0f);
             }
 
-            protected virtual void HandleZoom()
-            {
-                if(camInputData.ZoomClicked || camInputData.ZoomReleased)
-                    cameraZoom.ChangeFOV(this);
-            }
-
-            protected virtual void ChangeCursorState()
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-            }
-
-            public virtual void HandleSway(Vector3 _inputVector,float _rawXInput)
+            public void HandleSway(Vector3 _inputVector,float _rawXInput)
             {
                 cameraSway.SwayPlayer(_inputVector,_rawXInput);
             }
 
+            void HandleZoom()
+            {
+                if(camInputData.ZoomClicked || camInputData.ZoomReleased)
+                    cameraZoom.ChangeFOV(this);
 
-            public virtual void ChangeRunFOV(bool _returning)
+            }
+
+            public void ChangeRunFOV(bool _returning)
             {
                 cameraZoom.ChangeRunFOV(_returning,this);
             }
 
+            void ChangeCursorState()
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
         #endregion
     }
 }

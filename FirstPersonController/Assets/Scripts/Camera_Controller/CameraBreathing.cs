@@ -12,19 +12,19 @@ namespace VHS
             [BoxGroup("Axis")] public bool y = true;
             [BoxGroup("Axis")] public bool z = true;
 
-            protected PerlinNoiseScroller m_perlinNoiseScroller;
-            protected Vector3 m_finalRot;
-            protected Vector3 m_finalPos;
+            PerlinNoiseScroller m_perlinNoiseScroller;
+            Vector3 m_finalRot;
+            Vector3 m_finalPos;
         #endregion
 
         #region BuiltIn Methods
 
-            protected virtual void Start()
+            void Start()
             {
                 m_perlinNoiseScroller = new PerlinNoiseScroller(data);
             }
 
-            protected virtual void LateUpdate()
+            void LateUpdate()
             {
                 if(data != null)
                 {
