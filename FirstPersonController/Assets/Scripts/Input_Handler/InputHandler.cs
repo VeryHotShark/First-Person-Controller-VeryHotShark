@@ -33,6 +33,7 @@ namespace VHS
         #endregion
 
         #region Custom Methods
+<<<<<<< HEAD
             void GetInteractionInput()
             {
                 interactionInputData.Interact = Input.GetKeyDown(KeyCode.E);
@@ -46,6 +47,8 @@ namespace VHS
                 pickableInputData.PickReleased = Input.GetMouseButtonUp(0);
             }
 
+=======
+>>>>>>> parent of e1cbcd5... Marked all methods as virtual, marked private fields and methods as Protected to allow for extension via Inheritance
             void GetCameraInput()
             {
                 cameraInputData.InputVectorX = Input.GetAxis("Mouse X");
