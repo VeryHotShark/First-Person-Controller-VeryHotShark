@@ -294,9 +294,9 @@ namespace VHS
 
                     bool _hitWall = false;
 
-                    if(movementInputData.HasInput)
-                        _hitWall = Physics.SphereCast(_origin,rayObstacleSphereRadius,m_smoothFinalMoveDir, out _wallInfo,rayObstacleLength,obstacleLayers);
-                    Debug.DrawRay(_origin,m_smoothFinalMoveDir * rayObstacleLength,Color.blue);
+                    if(movementInputData.HasInput && m_finalMoveDir.sqrMagnitude > 0)
+                        _hitWall = Physics.SphereCast(_origin,rayObstacleSphereRadius,m_finalMoveDir, out _wallInfo,rayObstacleLength,obstacleLayers);
+                    Debug.DrawRay(_origin,m_finalMoveDir * rayObstacleLength,Color.blue);
 
                     m_hitWall = _hitWall ? true : false;
                 }
@@ -377,6 +377,9 @@ namespace VHS
                     if(movementInputData.IsCrouching)
                         if(CheckIfRoof())
                             return;
+
+                    if(m_LandRoutine != null)
+                        StopCoroutine(m_LandRoutine);
 
                     if(m_CrouchRoutine != null)
                         StopCoroutine(m_CrouchRoutine);

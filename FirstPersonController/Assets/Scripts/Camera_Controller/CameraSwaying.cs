@@ -67,7 +67,7 @@ namespace VHS
                 Vector3 _swayVector;
                 _swayVector.z = _swayFinalAmount;
 
-                m_camTransform.localEulerAngles = new Vector3(m_camTransform.eulerAngles.x,m_camTransform.eulerAngles.y,_swayVector.z);
+                m_camTransform.localEulerAngles = new Vector3(m_camTransform.localEulerAngles.x,m_camTransform.localEulerAngles.y,_swayVector.z);
 
                 m_xAmountPreviousFrame = m_xAmountThisFrame;
             }

@@ -26,9 +26,15 @@ namespace VHS
                 CameraInputData m_camInputData;
                 MovementInputData m_movementInputData;
 
+                #region Flags
+                    private bool m_running;
+                    private bool m_zooming;
+                #endregion
+
                 #region Components
                     Camera m_cam;
                 #endregion
+
                 #region Reference/Cache
                     IEnumerator m_ChangeFOVRoutine;
                     IEnumerator m_ChangeRunFOVRoutine;
@@ -47,6 +53,15 @@ namespace VHS
 
             public void ChangeFOV(MonoBehaviour _mono)
             {
+                if(m_running)
+                {
+                    m_camInputData.IsZooming = !m_camInputData.IsZooming;
+                    return;
+                }
+
+                if(m_ChangeRunFOVRoutine != null)
+                    _mono.StopCoroutine(m_ChangeRunFOVRoutine);
+
                 if(m_ChangeFOVRoutine != null)
                     _mono.StopCoroutine(m_ChangeFOVRoutine);
 
@@ -77,6 +92,9 @@ namespace VHS
 
             public void ChangeRunFOV(bool _returning,MonoBehaviour _mono)
             {
+                if(m_ChangeFOVRoutine != null)
+                    _mono.StopCoroutine(m_ChangeFOVRoutine);
+
                 if(m_ChangeRunFOVRoutine != null)
                     _mono.StopCoroutine(m_ChangeRunFOVRoutine);
 
@@ -95,6 +113,7 @@ namespace VHS
                 float _currentFOV = m_cam.fieldOfView;
                 float  _targetFOV = _returning ? m_initFOV : runFOV;
 
+                m_running = !_returning;
 
                 while(_percent < 1f)
                 {
