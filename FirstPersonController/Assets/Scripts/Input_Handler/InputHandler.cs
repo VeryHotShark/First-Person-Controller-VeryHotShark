@@ -12,8 +12,6 @@ namespace VHS
             public MovementInputData movementInputData;
             [BoxGroup("Input Data")]
             public InteractionInputData interactionInputData;
-            [BoxGroup("Input Data")]
-            public PickableInputData pickableInputData;
         #endregion
 
         #region BuiltIn Methods
@@ -21,29 +19,22 @@ namespace VHS
             {
                 cameraInputData.ResetInput();
                 movementInputData.ResetInput();
+                interactionInputData.ResetInput();
             }
 
             void Update()
             {
-                GetInteractionInput();
-                GetPickableInput();
                 GetCameraInput();
                 GetMovementInputData();
+                GetInteractionInputData();
             }
         #endregion
 
         #region Custom Methods
-            void GetInteractionInput()
+            void GetInteractionInputData()
             {
-                interactionInputData.Interact = Input.GetKeyDown(KeyCode.E);
-                interactionInputData.HoldInteract = Input.GetKey(KeyCode.E);
-            }
-
-            void GetPickableInput()
-            {
-                pickableInputData.PickClicked = Input.GetMouseButtonDown(0);
-                pickableInputData.PickHold = Input.GetMouseButton(0);
-                pickableInputData.PickReleased = Input.GetMouseButtonUp(0);
+                interactionInputData.InteractedClicked = Input.GetKeyDown(KeyCode.E);
+                interactionInputData.InteractedReleased = Input.GetKeyUp(KeyCode.E);
             }
 
             void GetCameraInput()

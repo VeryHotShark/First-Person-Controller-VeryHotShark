@@ -8,70 +8,70 @@ namespace VHS
     public class FirstPersonController : MonoBehaviour
     {
         #region Variables
-            #region Public      
+            #region Private Serialized     
                 #region Data
                     [Space]
-                    [BoxGroup("Data")] public MovementInputData movementInputData;
-                    [BoxGroup("Data")] public HeadBobData headBobData;
+                    [BoxGroup("Data")][SerializeField] private MovementInputData movementInputData = null;
+                    [BoxGroup("Data")][SerializeField] private HeadBobData headBobData = null;
 
                 #endregion
                     
                 #region Locomotion
                     [Space]
-                    [BoxGroup("Locomotion Settings")] public float crouchSpeed = 1f;
-                    [BoxGroup("Locomotion Settings")] public float walkSpeed = 2f;
-                    [BoxGroup("Locomotion Settings")] public float runSpeed = 3f;
-                    [BoxGroup("Locomotion Settings")] public float jumpSpeed = 5f;
-                    [BoxGroup("Locomotion Settings")][Slider(0f,1f)] public float moveBackwardsSpeedPercent = 0.5f;
-                    [BoxGroup("Locomotion Settings")][Slider(0f,1f)]  public float moveSideSpeedPercent = 0.75f;
+                    [BoxGroup("Locomotion Settings")][SerializeField] private float crouchSpeed = 1f;
+                    [BoxGroup("Locomotion Settings")][SerializeField] private float walkSpeed = 2f;
+                    [BoxGroup("Locomotion Settings")][SerializeField] private float runSpeed = 3f;
+                    [BoxGroup("Locomotion Settings")][SerializeField] private float jumpSpeed = 5f;
+                    [BoxGroup("Locomotion Settings")][Slider(0f,1f)][SerializeField] private float moveBackwardsSpeedPercent = 0.5f;
+                    [BoxGroup("Locomotion Settings")][Slider(0f,1f)][SerializeField] private float moveSideSpeedPercent = 0.75f;
                 #endregion
 
                 #region Run Settings
                     [Space]
-                    [BoxGroup("Run Settings")][Slider(-1f,1f)] public float canRunThreshold = 0.8f;
-                    [BoxGroup("Run Settings")] public AnimationCurve runTransitionCurve = AnimationCurve.EaseInOut(0f,0f,1f,1f);
+                    [BoxGroup("Run Settings")][Slider(-1f,1f)][SerializeField] private float canRunThreshold = 0.8f;
+                    [BoxGroup("Run Settings")][SerializeField] private AnimationCurve runTransitionCurve = AnimationCurve.EaseInOut(0f,0f,1f,1f);
                 #endregion
 
                 #region Crouch Settings
                     [Space]
-                    [BoxGroup("Crouch Settings")] [Slider(0.2f,0.9f)] public float crouchPercent = 0.6f;
-                    [BoxGroup("Crouch Settings")] public float crouchTransitionDuration = 1f;
-                    [BoxGroup("Crouch Settings")] public AnimationCurve crouchTransitionCurve = AnimationCurve.EaseInOut(0f,0f,1f,1f);
+                    [BoxGroup("Crouch Settings")][Slider(0.2f,0.9f)][SerializeField] private float crouchPercent = 0.6f;
+                    [BoxGroup("Crouch Settings")][SerializeField] private float crouchTransitionDuration = 1f;
+                    [BoxGroup("Crouch Settings")][SerializeField] private AnimationCurve crouchTransitionCurve = AnimationCurve.EaseInOut(0f,0f,1f,1f);
                 #endregion
 
                 #region Landing Settings
                     [Space]
-                    [BoxGroup("Landing Settings")] [Slider(0.05f,0.5f)] public float lowLandAmount = 0.1f;
-                    [BoxGroup("Landing Settings")] [Slider(0.2f,0.9f)] public float highLandAmount = 0.6f;
-                    [BoxGroup("Landing Settings")] public float landTimer = 0.5f;
-                    [BoxGroup("Landing Settings")] public float landDuration = 1f;
-                    [BoxGroup("Landing Settings")] public AnimationCurve landCurve = AnimationCurve.EaseInOut(0f,0f,1f,1f);
+                    [BoxGroup("Landing Settings")][Slider(0.05f,0.5f)][SerializeField] private float lowLandAmount = 0.1f;
+                    [BoxGroup("Landing Settings")][Slider(0.2f,0.9f)][SerializeField] private float highLandAmount = 0.6f;
+                    [BoxGroup("Landing Settings")][SerializeField] private float landTimer = 0.5f;
+                    [BoxGroup("Landing Settings")][SerializeField] private float landDuration = 1f;
+                    [BoxGroup("Landing Settings")][SerializeField] private AnimationCurve landCurve = AnimationCurve.EaseInOut(0f,0f,1f,1f);
                 #endregion
 
                 #region Gravity
                     [Space]
-                    [BoxGroup("Gravity Settings")] public float gravityMultiplier = 2.5f;
-                    [BoxGroup("Gravity Settings")] public float stickToGroundForce = 5f;
+                    [BoxGroup("Gravity Settings")][SerializeField] private float gravityMultiplier = 2.5f;
+                    [BoxGroup("Gravity Settings")][SerializeField] private float stickToGroundForce = 5f;
                     [Space]
-                    [BoxGroup("Gravity Settings")] public LayerMask groundLayer;
-                    [BoxGroup("Gravity Settings")] [Slider(0f,1f)] public float rayLength = 0.1f;
-                    [BoxGroup("Gravity Settings")] [Slider(0.01f,1f)] public float raySphereRadius = 0.1f;
+                    [BoxGroup("Gravity Settings")][SerializeField] private LayerMask groundLayer = ~0;
+                    [BoxGroup("Gravity Settings")][Slider(0f,1f)][SerializeField] private float rayLength = 0.1f;
+                    [BoxGroup("Gravity Settings")][Slider(0.01f,1f)][SerializeField] private float raySphereRadius = 0.1f;
                 #endregion
 
                 #region Wall Settings
-                    [BoxGroup("Gravity Settings")] public LayerMask obstacleLayers;
-                    [BoxGroup("Check Wall Settings")] [Slider(0f,1f)] public float rayObstacleLength = 0.1f;
-                    [BoxGroup("Check Wall Settings")] [Slider(0.01f,1f)] public float rayObstacleSphereRadius = 0.1f;
+                    [BoxGroup("Gravity Settings")][SerializeField] private LayerMask obstacleLayers = ~0;
+                    [BoxGroup("Check Wall Settings")][Slider(0f,1f)][SerializeField] private float rayObstacleLength = 0.1f;
+                    [BoxGroup("Check Wall Settings")][Slider(0.01f,1f)][SerializeField] private float rayObstacleSphereRadius = 0.1f;
                     
                 #endregion
 
                 #region Smooth Settings
                     [Space]                
-                    [BoxGroup("Smooth Settings")] [Range(1f,100f)] public float smoothRotateSpeed = 5f;
-                    [BoxGroup("Smooth Settings")] [Range(1f,100f)] public float smoothInputSpeed = 5f;
-                    [BoxGroup("Smooth Settings")] [Range(1f,100f)] public float smoothVelocitySpeed = 5f;
-                    [BoxGroup("Smooth Settings")] [Range(1f,100f)] public float smoothFinalDirectionSpeed = 5f;
-                    [BoxGroup("Smooth Settings")] [Range(1f,100f)] public float smoothHeadBobSpeed = 5f;
+                    [BoxGroup("Smooth Settings")] [Range(1f,100f)] [SerializeField] private float smoothRotateSpeed = 5f;
+                    [BoxGroup("Smooth Settings")] [Range(1f,100f)] [SerializeField] private float smoothInputSpeed = 5f;
+                    [BoxGroup("Smooth Settings")] [Range(1f,100f)] [SerializeField] private float smoothVelocitySpeed = 5f;
+                    [BoxGroup("Smooth Settings")] [Range(1f,100f)] [SerializeField] private float smoothFinalDirectionSpeed = 5f;
+                    [BoxGroup("Smooth Settings")] [Range(1f,100f)] [SerializeField] private float smoothHeadBobSpeed = 5f;
 
                     [Space]
                     [BoxGroup("Smooth Settings")] public bool experimental;
@@ -81,75 +81,72 @@ namespace VHS
                     
                 #endregion
             #endregion
-            #region Private
-                #region Components / Custom Classes
-                    CharacterController m_characterController;
-                    Transform m_yawTransform;
-                    Transform m_camTransform;
-                    HeadBob m_headBob;
-                    CameraController m_cameraController;
+            #region Private Non-Serialized
+                #region Components / Custom Classes / Caches
+                    private CharacterController m_characterController;
+                    private Transform m_yawTransform;
+                    private Transform m_camTransform;
+                    private HeadBob m_headBob;
+                    private CameraController m_cameraController;
+                    
+                    private RaycastHit m_hitInfo;
+                    private IEnumerator m_CrouchRoutine;
+                    private IEnumerator m_LandRoutine;
                 #endregion
 
-                #region Debug/Cache
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] Vector2 m_inputVector;
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] Vector2 m_smoothInputVector;
+                #region Debug
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] private Vector2 m_inputVector;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] private Vector2 m_smoothInputVector;
 
                     [Space]
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] Vector3 m_finalMoveDir;
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] Vector3 m_smoothFinalMoveDir;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] private Vector3 m_finalMoveDir;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] private Vector3 m_smoothFinalMoveDir;
                     [Space]
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] Vector3 m_finalMoveVector;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] private Vector3 m_finalMoveVector;
 
                     [Space]
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] float m_currentSpeed;
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] float m_smoothCurrentSpeed;
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] float m_finalSmoothCurrentSpeed;
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] float m_walkRunSpeedDifference;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] private float m_currentSpeed;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] private float m_smoothCurrentSpeed;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] private float m_finalSmoothCurrentSpeed;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] private float m_walkRunSpeedDifference;
 
                     [Space]
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] float m_finalRayLength;
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] bool m_hitWall;
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] bool m_isGrounded;
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] bool m_previouslyGrounded;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] private float m_finalRayLength;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] private bool m_hitWall;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] private bool m_isGrounded;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] private bool m_previouslyGrounded;
 
                     [Space]
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] float m_initHeight;
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] float m_crouchHeight;
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] Vector3 m_initCenter;
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] Vector3 m_crouchCenter;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] private float m_initHeight;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] private float m_crouchHeight;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] private Vector3 m_initCenter;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] private Vector3 m_crouchCenter;
                     [Space]
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] float m_initCamHeight;
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] float m_crouchCamHeight;
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] float m_crouchStandHeightDifference;
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] bool m_duringCrouchAnimation;
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] bool m_duringRunAnimation;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] private float m_initCamHeight;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] private float m_crouchCamHeight;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] private float m_crouchStandHeightDifference;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] private bool m_duringCrouchAnimation;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] private bool m_duringRunAnimation;
                     [Space]
-                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] float m_inAirTimer;
+                    [BoxGroup("DEBUG")][SerializeField][ReadOnly] private float m_inAirTimer;
 
                     [Space]
-                    [BoxGroup("DEBUG")][ShowIf("experimental")][SerializeField][ReadOnly] float m_inputVectorMagnitude;
-                    [BoxGroup("DEBUG")][ShowIf("experimental")][SerializeField][ReadOnly] float m_smoothInputVectorMagnitude;
-                #endregion
-            
-                #region Cache Non Serialized
-                    RaycastHit m_hitInfo;
-                    IEnumerator m_CrouchRoutine;
-                    IEnumerator m_LandRoutine;
+                    [BoxGroup("DEBUG")][ShowIf("experimental")][SerializeField][ReadOnly] private float m_inputVectorMagnitude;
+                    [BoxGroup("DEBUG")][ShowIf("experimental")][SerializeField][ReadOnly] private float m_smoothInputVectorMagnitude;
                 #endregion
             #endregion
         
         #endregion
 
         #region BuiltIn Methods     
-            void Start()
+            protected virtual void Start()
             {
                 GetComponents();
                 InitVariables();
             }
 
-            void Update()
+            protected virtual void Update()
             {
-
                 if(m_yawTransform != null)
                     RotateTowardsCamera();
 
@@ -200,7 +197,7 @@ namespace VHS
 
         #region Custom Methods
             #region Initialize Methods    
-                void GetComponents()
+                protected virtual void GetComponents()
                 {
                     m_characterController = GetComponent<CharacterController>();
                     m_cameraController = GetComponentInChildren<CameraController>();
@@ -209,7 +206,7 @@ namespace VHS
                     m_headBob = new HeadBob(headBobData, moveBackwardsSpeedPercent, moveSideSpeedPercent);
                 }
 
-                void InitVariables()
+                protected virtual void InitVariables()
                 {   
                     // Calculate where our character center should be based on height and skin width
                     m_characterController.center = new Vector3(0f,m_characterController.height / 2f + m_characterController.skinWidth,0f);
@@ -239,14 +236,14 @@ namespace VHS
             #endregion
 
             #region Smoothing Methods
-                void SmoothInput()
+                protected virtual void SmoothInput()
                 {
                     m_inputVector = movementInputData.InputVector.normalized;
                     m_smoothInputVector = Vector2.Lerp(m_smoothInputVector,m_inputVector,Time.deltaTime * smoothInputSpeed);
                     //Debug.DrawRay(transform.position, new Vector3(m_smoothInputVector.x,0f,m_smoothInputVector.y), Color.green);
                 }
 
-                void SmoothSpeed()
+                protected virtual void SmoothSpeed()
                 {
                     m_smoothCurrentSpeed = Mathf.Lerp(m_smoothCurrentSpeed, m_currentSpeed, Time.deltaTime * smoothVelocitySpeed);
 
@@ -261,14 +258,14 @@ namespace VHS
                     }
                 }
 
-                void SmoothDir()
+                protected virtual void SmoothDir()
                 {
 
                     m_smoothFinalMoveDir = Vector3.Lerp(m_smoothFinalMoveDir, m_finalMoveDir, Time.deltaTime * smoothFinalDirectionSpeed);
                     Debug.DrawRay(transform.position, m_smoothFinalMoveDir, Color.yellow);
                 }
                 
-                void SmoothInputMagnitude()
+                protected virtual void SmoothInputMagnitude()
                 {
                     m_inputVectorMagnitude = m_inputVector.magnitude;
                     m_smoothInputVectorMagnitude = Mathf.Lerp(m_smoothInputVectorMagnitude, m_inputVectorMagnitude, Time.deltaTime * smoothInputMagnitudeSpeed);
@@ -276,7 +273,7 @@ namespace VHS
             #endregion
 
             #region Locomotion Calculation Methods
-                void CheckIfGrounded()
+                protected virtual void CheckIfGrounded()
                 {
                     Vector3 _origin = transform.position + m_characterController.center;
 
@@ -286,7 +283,7 @@ namespace VHS
                     m_isGrounded = _hitGround ? true : false;
                 }
 
-                void CheckIfWall()
+                protected virtual void CheckIfWall()
                 {
                     
                     Vector3 _origin = transform.position + m_characterController.center;
@@ -301,7 +298,7 @@ namespace VHS
                     m_hitWall = _hitWall ? true : false;
                 }
 
-                bool CheckIfRoof() /// TO FIX
+                protected virtual bool CheckIfRoof() /// TO FIX
                 {
                     Vector3 _origin = transform.position;
                     RaycastHit _roofInfo;
@@ -311,7 +308,7 @@ namespace VHS
                     return _hitRoof;
                 }
 
-                bool CanRun()
+                protected virtual bool CanRun()
                 {
                     Vector3 _normalizedDir = Vector3.zero;
 
@@ -322,7 +319,7 @@ namespace VHS
                     return _dot >= canRunThreshold && !movementInputData.IsCrouching ? true : false;
                 }
 
-                void CalculateMovementDirection()
+                protected virtual void CalculateMovementDirection()
                 {
 
                     Vector3 _vDir = transform.forward * m_smoothInputVector.y;
@@ -334,7 +331,7 @@ namespace VHS
                     m_finalMoveDir = _flattenDir;
                 }
 
-                Vector3 FlattenVectorOnSlopes(Vector3 _vectorToFlat)
+                protected virtual Vector3 FlattenVectorOnSlopes(Vector3 _vectorToFlat)
                 {
                     if(m_isGrounded)
                         _vectorToFlat = Vector3.ProjectOnPlane(_vectorToFlat,m_hitInfo.normal);
@@ -342,7 +339,7 @@ namespace VHS
                     return _vectorToFlat;
                 }
 
-                void CalculateSpeed()
+                protected virtual void CalculateSpeed()
                 {
                     m_currentSpeed = movementInputData.IsRunning && CanRun() ? runSpeed : walkSpeed;
                     m_currentSpeed = movementInputData.IsCrouching ? crouchSpeed : m_currentSpeed;
@@ -351,7 +348,7 @@ namespace VHS
                     m_currentSpeed = movementInputData.InputVector.x != 0 && movementInputData.InputVector.y ==  0 ? m_currentSpeed * moveSideSpeedPercent :  m_currentSpeed;
                 }
 
-                void CalculateFinalMovement()
+                protected virtual void CalculateFinalMovement()
                 {
                     float _smoothInputVectorMagnitude = experimental ? m_smoothInputVectorMagnitude : 1f;
                     Vector3 _finalVector = m_smoothFinalMoveDir * m_finalSmoothCurrentSpeed * _smoothInputVectorMagnitude;
@@ -366,13 +363,13 @@ namespace VHS
             #endregion
 
             #region Crouching Methods
-                void HandleCrouch()
+                protected virtual void HandleCrouch()
                 {
                     if(movementInputData.CrouchClicked && m_isGrounded)
                         InvokeCrouchRoutine();
                 }
 
-                void InvokeCrouchRoutine()
+                protected virtual void InvokeCrouchRoutine()
                 {
                     if(movementInputData.IsCrouching)
                         if(CheckIfRoof())
@@ -388,7 +385,7 @@ namespace VHS
                     StartCoroutine(m_CrouchRoutine);
                 }
 
-                IEnumerator CrouchRoutine()
+                protected virtual IEnumerator CrouchRoutine()
                 {
                     m_duringCrouchAnimation = true;
 
@@ -408,7 +405,6 @@ namespace VHS
 
                     movementInputData.IsCrouching = !movementInputData.IsCrouching;
                     m_headBob.CurrentStateHeight = movementInputData.IsCrouching ? m_crouchCamHeight : m_initCamHeight;
-                    Debug.Log(m_headBob.CurrentStateHeight);
 
                     while(_percent < 1f)
                     {
@@ -430,7 +426,7 @@ namespace VHS
             #endregion
 
             #region Landing Methods
-                void HandleLanding()
+                protected virtual void HandleLanding()
                 {
                     if(!m_previouslyGrounded && m_isGrounded)
                     {
@@ -438,7 +434,7 @@ namespace VHS
                     }
                 }
 
-                void InvokeLandingRoutine()
+                protected virtual void InvokeLandingRoutine()
                 {
                     if(m_LandRoutine != null)
                         StopCoroutine(m_LandRoutine);
@@ -447,7 +443,7 @@ namespace VHS
                     StartCoroutine(m_LandRoutine);
                 }
 
-                IEnumerator LandingRoutine()
+                protected virtual IEnumerator LandingRoutine()
                 {
                     float _percent = 0f;
                     float _landAmount = 0f;
@@ -474,7 +470,7 @@ namespace VHS
 
             #region Locomotion Apply Methods
 
-                void HandleHeadBob()
+                protected virtual void HandleHeadBob()
                 {
                     
                     if(movementInputData.HasInput && m_isGrounded  && !m_hitWall)
@@ -499,12 +495,12 @@ namespace VHS
                     //m_camTransform.localPosition = Vector3.Lerp(m_camTransform.localPosition,m_headBob.FinalOffset,Time.deltaTime * smoothHeadBobSpeed);
                 }
 
-                void HandleCameraSway()
+                protected virtual void HandleCameraSway()
                 {
                     m_cameraController.HandleSway(m_smoothInputVector,movementInputData.InputVector.x);
                 }
 
-                void HandleRunFOV()
+                protected virtual void HandleRunFOV()
                 {
                     if(movementInputData.HasInput && m_isGrounded  && !m_hitWall)
                     {
@@ -530,7 +526,7 @@ namespace VHS
                         }
                     }
                 }
-                void HandleJump()
+                protected virtual void HandleJump()
                 {
                     if(movementInputData.JumpClicked && !movementInputData.IsCrouching)
                     {
@@ -541,7 +537,7 @@ namespace VHS
                         m_isGrounded = false;
                     }
                 }
-                void ApplyGravity()
+                protected virtual void ApplyGravity()
                 {
                     if(m_characterController.isGrounded) // if we would use our own m_isGrounded it would not work that good, this one is more precise
                     {
@@ -557,12 +553,12 @@ namespace VHS
                     }
                 }
 
-                void ApplyMovement()
+                protected virtual void ApplyMovement()
                 {
                     m_characterController.Move(m_finalMoveVector * Time.deltaTime);
                 }
 
-                void RotateTowardsCamera()
+                protected virtual void RotateTowardsCamera()
                 {
                     Quaternion _currentRot = transform.rotation;
                     Quaternion _desiredRot = m_yawTransform.rotation;

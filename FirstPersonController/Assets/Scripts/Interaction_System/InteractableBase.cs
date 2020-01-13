@@ -1,44 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using NaughtyAttributes;
 using UnityEngine;
 
 namespace VHS
 {
-    public abstract class InteractableBase : MonoBehaviour, IInteractable
+    public class InteractableBase : MonoBehaviour, IInteractable
     {
-        [BoxGroup("Settings")] public bool multiple;
-        [BoxGroup("Settings")] public bool holdInteract;
-        [BoxGroup("Settings")] [ShowIf("holdInteract")] public float holdDuration;
+        #region Variables    
+            [Header("Interactable Settings")]
+            public float holdDuration;
 
-        protected bool m_interacted;
-        protected bool m_interactable = true;
+            [Space]
+            public bool holdInteract;
+            public bool multipleUse;
+            public bool isInteractable;
 
-        public float HoldDuration => holdDuration;
-        public bool HoldInteract => holdInteract;
-        public bool Multiple => multiple;
+            public float HoldDuration => holdDuration;
+        #endregion
 
-        public virtual void OnInteract()
-        {
-            m_interacted = true;
-        }
+        #region Properties    
+            public bool HoldInteract => holdInteract;
+            public bool MultipleUse => multipleUse;
+            public bool IsInteractable => isInteractable;
+        #endregion
 
-        public virtual bool IsInteractable()
-        {
-            if(multiple)
+        #region Methods
+            public virtual void OnInteract()
             {
-                if(m_interactable)
-                    return true;
-
-                return false;
+                Debug.Log("INTERACTED: " + gameObject.name);
             }
-            else
-            {
-                if(m_interacted)
-                    return false;
-
-                return true;
-            }
-        }
+        #endregion
     }
 }

@@ -1,20 +1,32 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-[CreateAssetMenu(fileName = "InteractionInputData", menuName = "FirstPersonController/Data/InteractionInputData", order = 0)]
-public class InteractionInputData : ScriptableObject
-{
-    private bool holdInteract;
-    private bool interact;
 
-    public bool Interact
+namespace VHS
+{    
+    [CreateAssetMenu(fileName = "InteractionInputData", menuName = "InteractionSystem/InputData")]
+    public class InteractionInputData : ScriptableObject
     {
-        get => interact;
-        set => interact = value;
-    }
+        private bool m_interactedClicked;
+        private bool m_interactedRelease;
 
-    public bool HoldInteract
-    {
-        get => holdInteract;
-        set => holdInteract = value;
+        public bool InteractedClicked
+        {
+            get => m_interactedClicked;
+            set => m_interactedClicked = value;
+        }
+
+        public bool InteractedReleased
+        {
+            get => m_interactedRelease;
+            set => m_interactedRelease = value;
+        }
+
+        public void ResetInput()
+        {
+            m_interactedClicked = false;
+            m_interactedRelease = false;
+        }
     }
 }
