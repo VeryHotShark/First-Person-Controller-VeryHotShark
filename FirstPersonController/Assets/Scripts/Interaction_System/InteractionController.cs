@@ -7,15 +7,14 @@ namespace VHS
     public class InteractionController : MonoBehaviour
     {
         #region Variables    
-            [Header("Data")]
-            public InteractionInputData interactionInputData;
-            public InteractionData interactionData;
+            [Space, Header("Data")]
+            [SerializeField] private InteractionInputData interactionInputData = null;
+            [SerializeField] private InteractionData interactionData = null;
 
-            [Space]
-            [Header("Ray Settings")]
-            public float rayDistance;
-            public float raySphereRadius;
-            public LayerMask interactableLayer;
+            [Space, Header("Ray Settings")]
+            [SerializeField] private float rayDistance = 0f;
+            [SerializeField] private float raySphereRadius = 0f;
+            [SerializeField] private LayerMask interactableLayer = ~0;
 
 
             #region Private

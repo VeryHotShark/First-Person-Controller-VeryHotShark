@@ -7,30 +7,32 @@ namespace VHS
     {
         #region Variables
             #region Data
-                [BoxGroup("Input Data")] public CameraInputData camInputData;
+                [Space,Header("Data")]
+                [SerializeField] private CameraInputData camInputData = null;
 
-                [BoxGroup("Custom Classes")] public CameraZoom cameraZoom;
-                [BoxGroup("Custom Classes")] public CameraSwaying cameraSway;
+                [Space,Header("Custom Classes")]
+                [SerializeField] private CameraZoom cameraZoom = null;
+                [SerializeField] private CameraSwaying cameraSway = null;
 
             #endregion
 
             #region Settings
-                [Space]
-                [BoxGroup("Settings")] public Vector2 sensitivity;
-                [BoxGroup("Settings")] public Vector2 smoothAmount;
-                [BoxGroup("Settings")] [MinMaxSlider(-90f,90f)] public Vector2 lookAngleMinMax;
+                [Space,Header("Look Settings")]
+                [SerializeField] private Vector2 sensitivity = Vector2.zero;
+                [SerializeField] private Vector2 smoothAmount = Vector2.zero;
+                [SerializeField] [MinMaxSlider(-90f,90f)] private Vector2 lookAngleMinMax = Vector2.zero;
             #endregion
 
             #region Private
-                float m_yaw;
-                float m_pitch;
+               private float m_yaw;
+               private float m_pitch;
 
-                float m_desiredYaw;
-                float m_desiredPitch;
+               private float m_desiredYaw;
+               private float m_desiredPitch;
 
                 #region Components                    
-                    Transform m_pitchTranform;
-                    Camera m_cam;
+                    private Transform m_pitchTranform;
+                    private Camera m_cam;
                 #endregion
             #endregion
             

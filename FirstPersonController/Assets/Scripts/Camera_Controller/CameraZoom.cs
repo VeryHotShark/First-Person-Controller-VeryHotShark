@@ -9,22 +9,22 @@ namespace VHS
     {
         #region Variables
 
-            #region Public
-                
-                [Range(20f,60f)] public float zoomFOV;
-                public AnimationCurve zoomCurve;
-                public float zoomTransitionDuration;
+            #region Private Serialized
+                [Space,Header("Zoom Settings")]
+                [Range(20f,60f)] [SerializeField] private float zoomFOV = 20f;
+                [SerializeField] private AnimationCurve zoomCurve = new AnimationCurve();
+                [SerializeField] private float zoomTransitionDuration = 0f;
 
-                [Range(60f,100f)] public float runFOV;
-                public AnimationCurve runCurve;
-                public float runTransitionDuration;
-                public float runReturnTransitionDuration;
+                [Space,Header("Run Settings")]
+                [Range(60f,100f)] [SerializeField] private float runFOV = 60f;
+                [SerializeField] private AnimationCurve runCurve = new AnimationCurve();
+                [SerializeField] private float runTransitionDuration = 0f;
+                [SerializeField] private float runReturnTransitionDuration = 0f;
             #endregion
 
-            #region Private
-                float m_initFOV;
-                CameraInputData m_camInputData;
-                MovementInputData m_movementInputData;
+            #region Private Non Serialized
+                private float m_initFOV;
+                private CameraInputData m_camInputData;
 
                 #region Flags
                     private bool m_running;
@@ -32,12 +32,12 @@ namespace VHS
                 #endregion
 
                 #region Components
-                    Camera m_cam;
+                    private Camera m_cam;
                 #endregion
 
                 #region Reference/Cache
-                    IEnumerator m_ChangeFOVRoutine;
-                    IEnumerator m_ChangeRunFOVRoutine;
+                    private IEnumerator m_ChangeFOVRoutine;
+                    private IEnumerator m_ChangeRunFOVRoutine;
                 #endregion
             #endregion
         #endregion
@@ -56,6 +56,7 @@ namespace VHS
                 if(m_running)
                 {
                     m_camInputData.IsZooming = !m_camInputData.IsZooming;
+                    m_zooming = m_camInputData.IsZooming;
                     return;
                 }
 
@@ -80,6 +81,7 @@ namespace VHS
                 float  _targetFOV = m_camInputData.IsZooming ? m_initFOV : zoomFOV;
 
                 m_camInputData.IsZooming = !m_camInputData.IsZooming;
+                m_zooming = m_camInputData.IsZooming;
 
                 while(_percent < 1f)
                 {

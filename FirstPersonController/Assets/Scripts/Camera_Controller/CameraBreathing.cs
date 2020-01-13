@@ -6,15 +6,17 @@ namespace VHS
     public class CameraBreathing : MonoBehaviour
     {
         #region Variables
-            [BoxGroup("Data")] public PerlinNoiseData data;
+            [Space,Header("Data")]
+            [SerializeField] private PerlinNoiseData data = null;
 
-            [BoxGroup("Axis")] public bool x = true;
-            [BoxGroup("Axis")] public bool y = true;
-            [BoxGroup("Axis")] public bool z = true;
+            [Space,Header("Axis")]
+            [SerializeField] private bool x = true;
+            [SerializeField] private bool y = true;
+            [SerializeField] private bool z = true;
 
-            PerlinNoiseScroller m_perlinNoiseScroller;
-            Vector3 m_finalRot;
-            Vector3 m_finalPos;
+            private PerlinNoiseScroller m_perlinNoiseScroller;
+            private Vector3 m_finalRot;
+            private Vector3 m_finalPos;
         #endregion
 
         #region BuiltIn Methods
