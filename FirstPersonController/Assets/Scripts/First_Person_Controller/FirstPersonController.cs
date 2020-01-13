@@ -10,74 +10,75 @@ namespace VHS
         #region Variables
             #region Private Serialized     
                 #region Data
-                    [Space]
-                    [BoxGroup("Data")][SerializeField] private MovementInputData movementInputData = null;
-                    [BoxGroup("Data")][SerializeField] private HeadBobData headBobData = null;
+                    [Space, Header("Data")]
+                    [SerializeField] private MovementInputData movementInputData = null;
+                    [SerializeField] private HeadBobData headBobData = null;
 
                 #endregion
                     
                 #region Locomotion
-                    [Space]
-                    [BoxGroup("Locomotion Settings")][SerializeField] private float crouchSpeed = 1f;
-                    [BoxGroup("Locomotion Settings")][SerializeField] private float walkSpeed = 2f;
-                    [BoxGroup("Locomotion Settings")][SerializeField] private float runSpeed = 3f;
-                    [BoxGroup("Locomotion Settings")][SerializeField] private float jumpSpeed = 5f;
-                    [BoxGroup("Locomotion Settings")][Slider(0f,1f)][SerializeField] private float moveBackwardsSpeedPercent = 0.5f;
-                    [BoxGroup("Locomotion Settings")][Slider(0f,1f)][SerializeField] private float moveSideSpeedPercent = 0.75f;
+                    [Space, Header("Locomotion Settings")]
+                    [SerializeField] private float crouchSpeed = 1f;
+                    [SerializeField] private float walkSpeed = 2f;
+                    [SerializeField] private float runSpeed = 3f;
+                    [SerializeField] private float jumpSpeed = 5f;
+                    [Slider(0f,1f)][SerializeField] private float moveBackwardsSpeedPercent = 0.5f;
+                    [Slider(0f,1f)][SerializeField] private float moveSideSpeedPercent = 0.75f;
                 #endregion
 
                 #region Run Settings
-                    [Space]
-                    [BoxGroup("Run Settings")][Slider(-1f,1f)][SerializeField] private float canRunThreshold = 0.8f;
-                    [BoxGroup("Run Settings")][SerializeField] private AnimationCurve runTransitionCurve = AnimationCurve.EaseInOut(0f,0f,1f,1f);
+                    [Space, Header("Run Settings")]
+                    [Slider(-1f,1f)][SerializeField] private float canRunThreshold = 0.8f;
+                    [SerializeField] private AnimationCurve runTransitionCurve = AnimationCurve.EaseInOut(0f,0f,1f,1f);
                 #endregion
 
                 #region Crouch Settings
-                    [Space]
-                    [BoxGroup("Crouch Settings")][Slider(0.2f,0.9f)][SerializeField] private float crouchPercent = 0.6f;
-                    [BoxGroup("Crouch Settings")][SerializeField] private float crouchTransitionDuration = 1f;
-                    [BoxGroup("Crouch Settings")][SerializeField] private AnimationCurve crouchTransitionCurve = AnimationCurve.EaseInOut(0f,0f,1f,1f);
+                    [Space, Header("Crouch Settings")]
+                    [Slider(0.2f,0.9f)][SerializeField] private float crouchPercent = 0.6f;
+                    [SerializeField] private float crouchTransitionDuration = 1f;
+                    [SerializeField] private AnimationCurve crouchTransitionCurve = AnimationCurve.EaseInOut(0f,0f,1f,1f);
                 #endregion
 
                 #region Landing Settings
-                    [Space]
-                    [BoxGroup("Landing Settings")][Slider(0.05f,0.5f)][SerializeField] private float lowLandAmount = 0.1f;
-                    [BoxGroup("Landing Settings")][Slider(0.2f,0.9f)][SerializeField] private float highLandAmount = 0.6f;
-                    [BoxGroup("Landing Settings")][SerializeField] private float landTimer = 0.5f;
-                    [BoxGroup("Landing Settings")][SerializeField] private float landDuration = 1f;
-                    [BoxGroup("Landing Settings")][SerializeField] private AnimationCurve landCurve = AnimationCurve.EaseInOut(0f,0f,1f,1f);
+                    [Space, Header("Landing Settings")]
+                    [Slider(0.05f,0.5f)][SerializeField] private float lowLandAmount = 0.1f;
+                    [Slider(0.2f,0.9f)][SerializeField] private float highLandAmount = 0.6f;
+                    [SerializeField] private float landTimer = 0.5f;
+                    [SerializeField] private float landDuration = 1f;
+                    [SerializeField] private AnimationCurve landCurve = AnimationCurve.EaseInOut(0f,0f,1f,1f);
                 #endregion
 
                 #region Gravity
-                    [Space]
-                    [BoxGroup("Gravity Settings")][SerializeField] private float gravityMultiplier = 2.5f;
-                    [BoxGroup("Gravity Settings")][SerializeField] private float stickToGroundForce = 5f;
-                    [Space]
-                    [BoxGroup("Gravity Settings")][SerializeField] private LayerMask groundLayer = ~0;
-                    [BoxGroup("Gravity Settings")][Slider(0f,1f)][SerializeField] private float rayLength = 0.1f;
-                    [BoxGroup("Gravity Settings")][Slider(0.01f,1f)][SerializeField] private float raySphereRadius = 0.1f;
+                    [Space, Header("Gravity Settings")]
+                    [SerializeField] private float gravityMultiplier = 2.5f;
+                    [SerializeField] private float stickToGroundForce = 5f;
+                    
+                    [SerializeField] private LayerMask groundLayer = ~0;
+                    [Slider(0f,1f)][SerializeField] private float rayLength = 0.1f;
+                    [Slider(0.01f,1f)][SerializeField] private float raySphereRadius = 0.1f;
                 #endregion
 
                 #region Wall Settings
-                    [BoxGroup("Gravity Settings")][SerializeField] private LayerMask obstacleLayers = ~0;
-                    [BoxGroup("Check Wall Settings")][Slider(0f,1f)][SerializeField] private float rayObstacleLength = 0.1f;
-                    [BoxGroup("Check Wall Settings")][Slider(0.01f,1f)][SerializeField] private float rayObstacleSphereRadius = 0.1f;
+                    [Space, Header("Check Wall Settings")]
+                    [SerializeField] private LayerMask obstacleLayers = ~0;
+                    [Slider(0f,1f)][SerializeField] private float rayObstacleLength = 0.1f;
+                    [Slider(0.01f,1f)][SerializeField] private float rayObstacleSphereRadius = 0.1f;
                     
                 #endregion
 
                 #region Smooth Settings
-                    [Space]                
-                    [BoxGroup("Smooth Settings")] [Range(1f,100f)] [SerializeField] private float smoothRotateSpeed = 5f;
-                    [BoxGroup("Smooth Settings")] [Range(1f,100f)] [SerializeField] private float smoothInputSpeed = 5f;
-                    [BoxGroup("Smooth Settings")] [Range(1f,100f)] [SerializeField] private float smoothVelocitySpeed = 5f;
-                    [BoxGroup("Smooth Settings")] [Range(1f,100f)] [SerializeField] private float smoothFinalDirectionSpeed = 5f;
-                    [BoxGroup("Smooth Settings")] [Range(1f,100f)] [SerializeField] private float smoothHeadBobSpeed = 5f;
+                    [Space, Header("Smooth Settings")]                
+                    [Range(1f,100f)] [SerializeField] private float smoothRotateSpeed = 5f;
+                    [Range(1f,100f)] [SerializeField] private float smoothInputSpeed = 5f;
+                    [Range(1f,100f)] [SerializeField] private float smoothVelocitySpeed = 5f;
+                    [Range(1f,100f)] [SerializeField] private float smoothFinalDirectionSpeed = 5f;
+                    [Range(1f,100f)] [SerializeField] private float smoothHeadBobSpeed = 5f;
 
                     [Space]
-                    [BoxGroup("Smooth Settings")] public bool experimental;
+                    [SerializeField] private bool experimental = false;
                     [InfoBox("It should smooth our player movement to not start fast and not stop fast but it's somehow jerky", InfoBoxType.Warning)]
                     [Tooltip("If set to very high it will stop player immediately after releasing input, otherwise it just another smoothing to our movement to make our player not move fast immediately and not stop immediately")]
-                    [BoxGroup("Smooth Settings")] [ShowIf("experimental")] [Range(1f,100f)] public float smoothInputMagnitudeSpeed = 5f;
+                    [ShowIf("experimental")] [Range(1f,100f)] [SerializeField] private float smoothInputMagnitudeSpeed = 5f;
                     
                 #endregion
             #endregion
@@ -95,6 +96,7 @@ namespace VHS
                 #endregion
 
                 #region Debug
+                    [Space]
                     [BoxGroup("DEBUG")][SerializeField][ReadOnly] private Vector2 m_inputVector;
                     [BoxGroup("DEBUG")][SerializeField][ReadOnly] private Vector2 m_smoothInputVector;
 
