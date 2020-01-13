@@ -38,10 +38,11 @@ namespace VHS
             
         #endregion
 
-        #region BuiltIn Methods     
-            void Start()
+        #region BuiltIn Methods  
+            void Awake()
             {
                 GetComponents();
+                InitValues();
                 InitComponents();
                 ChangeCursorState();
             }
@@ -60,6 +61,12 @@ namespace VHS
             {
                 m_pitchTranform = transform.GetChild(0).transform;
                 m_cam = GetComponentInChildren<Camera>();
+            }
+
+            void InitValues()
+            {
+                m_yaw = transform.eulerAngles.y;
+                m_desiredYaw = m_yaw;
             }
 
             void InitComponents()
