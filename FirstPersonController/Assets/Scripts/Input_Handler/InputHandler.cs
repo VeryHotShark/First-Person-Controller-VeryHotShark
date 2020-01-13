@@ -6,12 +6,10 @@ namespace VHS
     public class InputHandler : MonoBehaviour
     {
         #region Data
-            [BoxGroup("Input Data")]
-            public CameraInputData cameraInputData;
-            [BoxGroup("Input Data")]
-            public MovementInputData movementInputData;
-            [BoxGroup("Input Data")]
-            public InteractionInputData interactionInputData;
+            [Space,Header("Input Data")]
+            [SerializeField] private CameraInputData cameraInputData = null;
+            [SerializeField] private MovementInputData movementInputData = null;
+            [SerializeField] private InteractionInputData interactionInputData = null;
         #endregion
 
         #region BuiltIn Methods
@@ -51,7 +49,6 @@ namespace VHS
                 movementInputData.InputVectorX = Input.GetAxisRaw("Horizontal");
                 movementInputData.InputVectorY = Input.GetAxisRaw("Vertical");
 
-                //movementInputData.IsRunning = Input.GetKey(KeyCode.LeftShift);
                 movementInputData.RunClicked = Input.GetKeyDown(KeyCode.LeftShift);
                 movementInputData.RunReleased = Input.GetKeyUp(KeyCode.LeftShift);
 
