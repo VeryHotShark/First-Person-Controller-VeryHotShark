@@ -9,7 +9,7 @@ namespace VHS
     public class InteractionInputData : ScriptableObject
     {
         private bool m_interactedClicked;
-        private bool m_interactedRelease;
+        private bool m_interactedReleased;
 
         public bool InteractedClicked
         {
@@ -19,14 +19,14 @@ namespace VHS
 
         public bool InteractedReleased
         {
-            get => m_interactedRelease;
-            set => m_interactedRelease = value;
+            get => m_interactedReleased;
+            set => m_interactedReleased = value;
         }
 
         public void ResetInput()
         {
             m_interactedClicked = false;
-            m_interactedRelease = false;
+            m_interactedReleased = false;
         }
     }
 }

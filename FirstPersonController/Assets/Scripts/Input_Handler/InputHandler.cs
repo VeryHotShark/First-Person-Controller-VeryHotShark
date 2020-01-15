@@ -1,5 +1,6 @@
 using UnityEngine;
 using NaughtyAttributes;
+using System;
 
 namespace VHS
 {    
@@ -8,6 +9,7 @@ namespace VHS
         #region Data
             [Space,Header("Input Data")]
             [SerializeField] private CameraInputData cameraInputData = null;
+            [SerializeField] private WeaponInputData weaponInputData = null;
             [SerializeField] private MovementInputData movementInputData = null;
             [SerializeField] private InteractionInputData interactionInputData = null;
         #endregion
@@ -16,6 +18,7 @@ namespace VHS
             void Start()
             {
                 cameraInputData.ResetInput();
+                weaponInputData.ResetInput();
                 movementInputData.ResetInput();
                 interactionInputData.ResetInput();
             }
@@ -23,18 +26,13 @@ namespace VHS
             void Update()
             {
                 GetCameraInput();
+                GetWeaponInput();
                 GetMovementInputData();
                 GetInteractionInputData();
             }
         #endregion
 
         #region Custom Methods
-            void GetInteractionInputData()
-            {
-                interactionInputData.InteractedClicked = Input.GetKeyDown(KeyCode.E);
-                interactionInputData.InteractedReleased = Input.GetKeyUp(KeyCode.E);
-            }
-
             void GetCameraInput()
             {
                 cameraInputData.InputVectorX = Input.GetAxis("Mouse X");
@@ -42,6 +40,21 @@ namespace VHS
 
                 cameraInputData.ZoomClicked = Input.GetMouseButtonDown(1);
                 cameraInputData.ZoomReleased = Input.GetMouseButtonUp(1);
+            }
+
+            void GetWeaponInput()
+            {
+                weaponInputData.ShootButtonClicked = Input.GetMouseButtonDown(0);
+                weaponInputData.ShootButtonReleased = Input.GetMouseButtonUp(0);
+
+                weaponInputData.ReloadButtonClicked = Input.GetKeyDown(KeyCode.R);
+                weaponInputData.ReloadButtonReleased = Input.GetKeyUp(KeyCode.R);
+            }
+
+            void GetInteractionInputData()
+            {
+                interactionInputData.InteractedClicked = Input.GetKeyDown(KeyCode.E);
+                interactionInputData.InteractedReleased = Input.GetKeyUp(KeyCode.E);
             }
 
             void GetMovementInputData()
