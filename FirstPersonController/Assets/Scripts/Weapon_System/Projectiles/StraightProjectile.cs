@@ -6,22 +6,14 @@ namespace VHS
 {
     public class StraightProjectile : Projectile
     {
-        private ProjectileStraightSettings m_projectileSettings = new ProjectileStraightSettings();
+        private ProjectileStraightData m_projectileStraightData;
 
-        protected override void Awake()
-        {
-            base.Awake();
-            m_projectileSettings = projectileData.ProjectileSettings as ProjectileStraightSettings;
-        }
+        protected override void CastData() => m_projectileStraightData = projectileData as ProjectileStraightData;
 
         public override void OnUpdate(float _deltaTime)
         {
-            transform.Translate(transform.forward * _deltaTime * m_projectileSettings.ProjectileSpeed,Space.World);
-        }
-
-        public override void OnFire()
-        {
-            Debug.Log("I WAS FIRED");
+            base.OnUpdate(_deltaTime);
+            transform.Translate(transform.forward * _deltaTime * m_projectileStraightData.SpecificSettings.Speed,Space.World);
         }
     }
 }
