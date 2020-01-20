@@ -9,11 +9,10 @@ namespace VHS
         private ProjectileStraightData m_projectileStraightData;
 
         protected override void CastData() => m_projectileStraightData = projectileData as ProjectileStraightData;
-
-        public override void OnUpdate(float _deltaTime)
+        protected override void UpdatePosition(float _deltaTime)
         {
-            base.OnUpdate(_deltaTime);
-            transform.Translate(transform.forward * _deltaTime * m_projectileStraightData.SpecificSettings.Speed,Space.World);
+            transform.position += m_currentDirection * m_projectileStraightData.SpecificSettings.Speed * _deltaTime;
+            base.UpdatePosition(_deltaTime);
         }
     }
 }

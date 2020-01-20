@@ -5,10 +5,19 @@ using UnityEngine;
 
 namespace VHS
 {
+    public enum WeaponTriggerType
+    {
+        PullRelease,
+        Continous
+    }
+
     public class Weapon : MonoBehaviour
     {
+
         [SerializeField] private WeaponData weaponData = null;
         [SerializeField] private Projectile projectile = null;
+
+        public WeaponData Data => weaponData;
 
         protected bool CanShootWeapon
         {
@@ -38,7 +47,7 @@ namespace VHS
             
         }
 
-        public virtual void OnShootWeaponPressed()
+        public virtual void OnWeaponShootAttempt()
         {
             if(!CanShootWeapon) return;
 
@@ -50,8 +59,9 @@ namespace VHS
             m_currentAmmoCount--;
             m_timeSinceLastShot = Time.time;
 
-            Projectile projectileInstance =  Instantiate(projectile,m_projectileAnchor.transform.position, m_projectileAnchor.transform.rotation) as Projectile;
-            projectileInstance.OnFire();
+            IPoolable _poolableProjectile = PoolManager.SpawnPoolable(projectile,m_projectileAnchor.transform.position, m_projectileAnchor.transform.rotation, projectile.transform.localScale);
+            Projectile _projectileInstance = _poolableProjectile.Transform.gameObject.GetComponent<Projectile>();
+            _projectileInstance.OnFire(transform.root);
         }
 
         public virtual void OnReloadWeaponPressed()

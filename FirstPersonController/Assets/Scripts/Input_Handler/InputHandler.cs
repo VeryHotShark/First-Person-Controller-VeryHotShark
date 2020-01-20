@@ -47,6 +47,12 @@ namespace VHS
                 weaponInputData.ShootButtonClicked = Input.GetMouseButtonDown(0);
                 weaponInputData.ShootButtonReleased = Input.GetMouseButtonUp(0);
 
+                if(weaponInputData.ShootButtonClicked)
+                    weaponInputData.ShootButtonHeld = true;
+
+                if(weaponInputData.ShootButtonReleased)
+                    weaponInputData.ShootButtonHeld = false;
+
                 weaponInputData.ReloadButtonClicked = Input.GetKeyDown(KeyCode.R);
                 weaponInputData.ReloadButtonReleased = Input.GetKeyUp(KeyCode.R);
             }

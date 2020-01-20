@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a59acfcbc53954f49b7c0ee4a2b08b75, type: 3}
   m_Name: Data_Weapon
   m_EditorClassIdentifier: 
+  triggerType: 0
   ammoCount: 30
   roundsPerSecond: 60
   reloadDuration: 5

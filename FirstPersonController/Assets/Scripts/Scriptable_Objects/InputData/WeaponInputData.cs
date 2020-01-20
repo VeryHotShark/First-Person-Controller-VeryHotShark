@@ -9,6 +9,7 @@ namespace VHS
     public class WeaponInputData : ScriptableObject
     {
         private bool m_shootButtonClicked;
+        private bool m_shootButtonHeld;
         private bool m_shootButtonReleased;
 
         private bool m_reloadButtonClicked;
@@ -24,6 +25,12 @@ namespace VHS
         { 
             get => m_shootButtonReleased;
             set => m_shootButtonReleased = value; 
+        }
+
+        public bool ShootButtonHeld
+        {
+            get => m_shootButtonHeld;
+            set => m_shootButtonHeld = value;
         }
 
         public bool ReloadButtonClicked

@@ -25,7 +25,7 @@ namespace VHS
             }
         }
 
-        private void Awake()
+        protected virtual void Awake()
         {
             if(m_instance == null)
                 m_instance = this as T;

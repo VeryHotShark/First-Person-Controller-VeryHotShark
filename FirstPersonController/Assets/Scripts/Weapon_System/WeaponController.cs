@@ -26,8 +26,23 @@ namespace VHS
             {
                 weapon.OnUpdate();
 
-                if(weaponInputData.ShootButtonClicked)
-                    weapon.OnShootWeaponPressed();
+                switch(weapon.Data.TriggerType)
+                {
+                    case WeaponTriggerType.PullRelease :
+                    {
+                        if(weaponInputData.ShootButtonClicked)
+                            weapon.OnWeaponShootAttempt();
+
+                        break;
+                    }
+                    case WeaponTriggerType.Continous :
+                    {
+                        if(weaponInputData.ShootButtonHeld)
+                            weapon.OnWeaponShootAttempt();
+
+                        break;
+                    }
+                }
 
                 if(weaponInputData.ReloadButtonClicked)
                     weapon.OnReloadWeaponPressed();

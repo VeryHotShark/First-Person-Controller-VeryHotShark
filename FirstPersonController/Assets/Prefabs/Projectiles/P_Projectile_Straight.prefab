@@ -107,3 +107,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileData: {fileID: 11400000, guid: 94a1f1e1c1ee6a241b6971aef5647fab, type: 2}
+  collisionLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
