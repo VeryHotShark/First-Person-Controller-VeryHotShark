@@ -21,31 +21,29 @@ namespace VHS
         }
 
         private void OnWeaponTick()
-        {
-            foreach(Weapon weapon in m_weapons)
+        { 
+            if(weaponInputData.ShootButtonClicked)
             {
-                weapon.OnUpdate();
+                foreach(Weapon weapon in m_weapons)
+                    weapon.OnShootButtonPressed();
+            }
 
-                switch(weapon.Data.TriggerType)
-                {
-                    case WeaponTriggerType.PullRelease :
-                    {
-                        if(weaponInputData.ShootButtonClicked)
-                            weapon.OnWeaponShootAttempt();
+            if(weaponInputData.ShootButtonHeld)
+            {
+                foreach(Weapon weapon in m_weapons)
+                    weapon.OnShootButtonHeld();
+            }
 
-                        break;
-                    }
-                    case WeaponTriggerType.Continous :
-                    {
-                        if(weaponInputData.ShootButtonHeld)
-                            weapon.OnWeaponShootAttempt();
+            if(weaponInputData.ShootButtonReleased)
+            {
+                foreach(Weapon weapon in m_weapons)
+                    weapon.OnShootButtonReleased();
+            }
 
-                        break;
-                    }
-                }
-
-                if(weaponInputData.ReloadButtonClicked)
-                    weapon.OnReloadWeaponPressed();
+            if(weaponInputData.ReloadButtonClicked)
+            {
+                foreach(Weapon weapon in m_weapons)
+                    weapon.OnReloadButtonPressed();
             }
         }
 

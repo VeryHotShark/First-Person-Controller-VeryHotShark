@@ -337,6 +337,8 @@ GameObject:
   m_Component:
   - component: {fileID: 260237139}
   - component: {fileID: 260237140}
+  - component: {fileID: 260237142}
+  - component: {fileID: 260237141}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -375,6 +377,30 @@ MonoBehaviour:
   weaponData: {fileID: 11400000, guid: 0215d21d673e94c4b96c7bc97caf7b9f, type: 2}
   projectile: {fileID: 5602225627456855839, guid: 1407891a40e697549adf073dd75df41f,
     type: 3}
+--- !u!114 &260237141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260237138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5c80b65a45d37545ada7b165d88ad7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &260237142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260237138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eb07cb3f9650ee439ce393db4575d99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &479334300
 GameObject:
   m_ObjectHideFlags: 0
@@ -1339,7 +1365,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh14864
+  m_Name: pb_Mesh14934
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1554,7 +1580,6 @@ GameObject:
   - component: {fileID: 842506657}
   - component: {fileID: 842506656}
   - component: {fileID: 842506655}
-  - component: {fileID: 842506654}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -1576,20 +1601,6 @@ Transform:
   m_Father: {fileID: 1519287042}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &842506654
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 842506652}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 1587198558}
 --- !u!114 &842506655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16190,7 +16201,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1119762063}
   m_Layer: 0
-  m_Name: Player_Weapon_Right
+  m_Name: Player_Weapon_Right_Anchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16243,6 +16254,51 @@ Transform:
   m_Father: {fileID: 1860567006}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1168381667
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1168381668}
+  - component: {fileID: 1168381669}
+  m_Layer: 0
+  m_Name: SO_SINGLETON_MANAGER
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1168381668
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168381667}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1669752541}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1168381669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168381667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e369a6b06909f74da6a1aafdf93ba35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  so_managers:
+  - {fileID: 11400000, guid: 661418b24e7b6bd4b8beb84c9feec963, type: 2}
 --- !u!1 &1225693167
 GameObject:
   m_ObjectHideFlags: 0
@@ -19669,7 +19725,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh14760
+  m_Name: pb_Mesh14830
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -19854,6 +19910,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1253777427}
+  - {fileID: 1168381668}
   m_Father: {fileID: 1860567006}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -20101,9 +20158,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 787578e7ba3bae4478e0c20a0878c18f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponData: {fileID: 11400000, guid: 0215d21d673e94c4b96c7bc97caf7b9f, type: 2}
-  projectile: {fileID: 5602225627456855839, guid: 1407891a40e697549adf073dd75df41f,
-    type: 3}
+  weaponData: {fileID: 0}
+  projectile: {fileID: 0}
 --- !u!1 &1860567005
 GameObject:
   m_ObjectHideFlags: 0
@@ -20148,12 +20204,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1919326328}
   m_Layer: 0
-  m_Name: Player_Weapon_Left
+  m_Name: Player_Weapon_Left_Anchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1919326328
 Transform:
   m_ObjectHideFlags: 0

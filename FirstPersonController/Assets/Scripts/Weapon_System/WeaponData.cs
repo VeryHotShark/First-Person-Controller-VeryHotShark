@@ -3,7 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace VHS
-{
+{    
+    public enum WeaponTriggerType
+    {
+        PullRelease,
+        Continous
+    }
+
+
     [CreateAssetMenu(fileName = "weaponData", menuName = "WeaponSystem/weaponData")]
     public class WeaponData : ScriptableObject
     {
