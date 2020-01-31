@@ -1,0 +1,208 @@
+{
+    "name": "Player_Input",
+    "maps": [
+        {
+            "name": "Player_Gameplay",
+            "id": "5a77a03f-e863-4c71-827e-245e3e9f2d40",
+            "actions": [
+                {
+                    "name": "Player_Basic_Movement",
+                    "type": "Value",
+                    "id": "e84d95b8-64d0-4e68-85e9-581bb69a5410",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Player_Look",
+                    "type": "Value",
+                    "id": "20f9b501-fdb2-4093-8ac2-648314f1936a",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Player_Interact",
+                    "type": "Button",
+                    "id": "6b3a080f-1dcf-47a2-bfd5-242286482b1a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Player_Sprint",
+                    "type": "Button",
+                    "id": "1ec182f1-8efd-4734-9f3c-27f2a2ca54be",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Player_Crouch",
+                    "type": "Button",
+                    "id": "23011877-2c8b-4237-96c7-581ea76070b7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Player_Jump",
+                    "type": "Button",
+                    "id": "1780c046-c1ee-4413-8038-acb692127475",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Player_Zoom",
+                    "type": "Button",
+                    "id": "bae8415d-25b7-419a-9e44-2895c35ecfea",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "WASD",
+                    "id": "a9f88d43-87fe-4ea3-a4ee-8b9857ccd9f5",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Player_Basic_Movement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "5337142f-77b7-4868-a486-70b855d376ec",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Player_Basic_Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "68b51e2e-baa6-4122-b683-6a320b313e3a",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Player_Basic_Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "d0391f04-8fec-431e-9f97-4099e2a5d6de",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Player_Basic_Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "83b2b868-5ae4-48ed-b17b-6d1c5924a115",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Player_Basic_Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "4b406ae0-a926-44d9-823c-011471e1e957",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Player_Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6f74029d-9e47-41ca-aba6-82e995ea0c83",
+                    "path": "<Keyboard>/e",
+                    "interactions": "PressRelease",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Player_Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "29eb1ae3-5624-42ab-9caf-1d9dba51b69a",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "PressRelease",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Player_Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "afe8ab63-75d1-4bdb-86c7-d70529b7005c",
+                    "path": "<Keyboard>/leftCtrl",
+                    "interactions": "PressRelease",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Player_Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c5d5e6aa-1dd0-43d5-aee1-190e29244892",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Player_Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7d9d88c7-e60f-450a-bfd7-95dfe18433f2",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "PressRelease",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Player_Zoom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Keyboard&Mouse",
+            "bindingGroup": "Keyboard&Mouse",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

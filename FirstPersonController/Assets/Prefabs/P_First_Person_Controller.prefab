@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1faa7e4ab8db142458b7333a61f81597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camInputData: {fileID: 11400000, guid: 91ebd8974cbf1964f86a0e8b5e93ed5c, type: 2}
   cameraZoom:
     zoomFOV: 40
     zoomCurve:
@@ -128,7 +127,7 @@ MonoBehaviour:
       m_PreInfinity: 0
       m_PostInfinity: 2
       m_RotationOrder: 4
-  sensitivity: {x: 40, y: 40}
+  sensitivity: {x: 3, y: 3}
   smoothAmount: {x: 5, y: 5}
   lookAngleMinMax: {x: -90, y: 90}
 --- !u!1 &3843716869417167139
@@ -335,7 +334,6 @@ GameObject:
   - component: {fileID: 3843716870331872629}
   - component: {fileID: 3843716870331872628}
   - component: {fileID: 3843716870331872635}
-  - component: {fileID: 3843716870331872632}
   m_Layer: 0
   m_Name: P_First_Person_Controller
   m_TagString: Untagged
@@ -388,12 +386,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0217791945a1064fbd0a34d70bdee8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementInputData: {fileID: 11400000, guid: abad080c0665fdc4cb00444da1f990a9, type: 2}
   headBobData: {fileID: 11400000, guid: fd51ede42cc20a04da93c2d2fac1e05c, type: 2}
   crouchSpeed: 1
   walkSpeed: 3
   runSpeed: 6
   jumpSpeed: 6
+  slideSpeed: 10
   moveBackwardsSpeedPercent: 0.5
   moveSideSpeedPercent: 0.7
   canRunThreshold: 0.7
@@ -444,6 +442,33 @@ MonoBehaviour:
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  slidePercent: 0.3
+  slideTransitionDuration: 1
+  maxSlideDuration: 1.25
+  slideTransitionCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -514,17 +539,25 @@ MonoBehaviour:
   m_walkRunSpeedDifference: 0
   m_finalRayLength: 0
   m_hitWall: 0
+  m_isCrouching: 0
+  m_isSliding: 0
+  m_isRunning: 0
   m_isGrounded: 0
   m_previouslyGrounded: 0
   m_initHeight: 0
   m_crouchHeight: 0
+  m_slideHeight: 0
   m_initCenter: {x: 0, y: 0, z: 0}
   m_crouchCenter: {x: 0, y: 0, z: 0}
+  m_slideCenter: {x: 0, y: 0, z: 0}
   m_initCamHeight: 0
   m_crouchCamHeight: 0
+  m_slideCamHeight: 0
   m_crouchStandHeightDifference: 0
+  m_slideStandHeightDifference: 0
   m_duringCrouchAnimation: 0
   m_duringRunAnimation: 0
+  m_duringSlideAnimation: 0
   m_inAirTimer: 0
   m_inputVectorMagnitude: 0
   m_smoothInputVectorMagnitude: 0
@@ -540,27 +573,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd4684db32d35e24ca29eb56a80fd016, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionInputData: {fileID: 11400000, guid: 53d9f3696d1130146ae3edd77cffcd05,
-    type: 2}
   interactionData: {fileID: 11400000, guid: 229de2e6b9a896344928fb2041804439, type: 2}
   rayDistance: 5
   raySphereRadius: 0.3
   interactableLayer:
     serializedVersion: 2
     m_Bits: 1024
---- !u!114 &3843716870331872632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3843716870331872631}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d95a60a4f97dd8408e783d47bb78e25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraInputData: {fileID: 11400000, guid: 91ebd8974cbf1964f86a0e8b5e93ed5c, type: 2}
-  movementInputData: {fileID: 11400000, guid: abad080c0665fdc4cb00444da1f990a9, type: 2}
-  interactionInputData: {fileID: 11400000, guid: 53d9f3696d1130146ae3edd77cffcd05,
-    type: 2}

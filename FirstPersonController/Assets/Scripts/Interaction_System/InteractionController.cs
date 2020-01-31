@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,6 @@ namespace VHS
     {
         #region Variables    
             [Space, Header("Data")]
-            [SerializeField] private InteractionInputData interactionInputData = null;
             [SerializeField] private InteractionData interactionData = null;
 
             [Space, Header("Ray Settings")]
@@ -28,15 +28,41 @@ namespace VHS
         #endregion
 
         #region Built In Methods      
-            void Awake()
+            private void Awake()
             {
                 m_cam = FindObjectOfType<Camera>();
             }
 
-            void Update()
+            private void OnEnable()
+            {
+                InputManager._OnPlayerInteractPressed += _OnPlayerInteractPressed;
+                InputManager._OnPlayerInteractReleased += _OnPlayerInteractReleased;
+            }
+
+            private void OnDisable()
+            {
+                InputManager._OnPlayerInteractPressed -= _OnPlayerInteractPressed;
+                InputManager._OnPlayerInteractReleased -= _OnPlayerInteractReleased;
+            }
+
+            private void Update()
             {
                 CheckForInteractable();
                 CheckForInteractableInput();
+            }
+        #endregion
+
+        #region Event Callback Methods    
+            private void _OnPlayerInteractPressed()
+            {
+                m_interacting = true;
+                m_holdTimer = 0f;
+            }
+
+            private void _OnPlayerInteractReleased()
+            {
+                m_interacting = false;
+                m_holdTimer = 0f;
             }
         #endregion
 
@@ -80,18 +106,6 @@ namespace VHS
             {
                 if(interactionData.IsEmpty())
                     return;
-
-                if(interactionInputData.InteractedClicked)
-                {
-                    m_interacting = true;
-                    m_holdTimer = 0f;
-                }
-
-                if(interactionInputData.InteractedReleased)
-                {
-                    m_interacting = false;
-                    m_holdTimer = 0f;
-                }
 
                 if(m_interacting)
                 {

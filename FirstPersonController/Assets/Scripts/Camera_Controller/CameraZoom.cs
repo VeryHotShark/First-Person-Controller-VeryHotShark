@@ -24,7 +24,6 @@ namespace VHS
 
             #region Private Non Serialized
                 private float m_initFOV;
-                private CameraInputData m_camInputData;
 
                 #region Flags
                     private bool m_running;
@@ -43,10 +42,8 @@ namespace VHS
         #endregion
     
         #region Custom Methods
-            public void Init(Camera _cam, CameraInputData _data)
+            public void Init(Camera _cam)
             {
-                m_camInputData = _data;
-
                 m_cam = _cam;
                 m_initFOV = m_cam.fieldOfView;
             }
@@ -55,8 +52,7 @@ namespace VHS
             {
                 if(m_running)
                 {
-                    m_camInputData.IsZooming = !m_camInputData.IsZooming;
-                    m_zooming = m_camInputData.IsZooming;
+                    m_zooming = !m_zooming;
                     return;
                 }
 
@@ -78,10 +74,9 @@ namespace VHS
                 float _speed = 1f / zoomTransitionDuration;
 
                 float _currentFOV = m_cam.fieldOfView;
-                float  _targetFOV = m_camInputData.IsZooming ? m_initFOV : zoomFOV;
+                float  _targetFOV = m_zooming ? m_initFOV : zoomFOV;
 
-                m_camInputData.IsZooming = !m_camInputData.IsZooming;
-                m_zooming = m_camInputData.IsZooming;
+                m_zooming = !m_zooming;
 
                 while(_percent < 1f)
                 {

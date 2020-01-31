@@ -1,4 +1,5 @@
-﻿using NaughtyAttributes;
+﻿using System;
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace VHS
@@ -7,9 +8,6 @@ namespace VHS
     {
         #region Variables
             #region Data
-                [Space,Header("Data")]
-                [SerializeField] private CameraInputData camInputData = null;
-
                 [Space,Header("Custom Classes")]
                 [SerializeField] private CameraZoom cameraZoom = null;
                 [SerializeField] private CameraSwaying cameraSway = null;
@@ -39,7 +37,7 @@ namespace VHS
         #endregion
 
         #region BuiltIn Methods  
-            void Awake()
+            private void Awake()
             {
                 GetComponents();
                 InitValues();
@@ -47,12 +45,35 @@ namespace VHS
                 ChangeCursorState();
             }
 
-            void LateUpdate()
+            private void OnEnable()
+            {
+                InputManager._OnPlayerZoomPressed += _OnPlayerZoomPressed;
+                InputManager._OnPlayerZoomReleased += _OnPlayerZoomReleased;
+            }
+
+            private void OnDisable()
+            {
+                InputManager._OnPlayerZoomPressed -= _OnPlayerZoomPressed;
+                InputManager._OnPlayerZoomReleased -= _OnPlayerZoomReleased;
+            }
+
+            private void LateUpdate()
             {
                 CalculateRotation();
                 SmoothRotation();
                 ApplyRotation();
-                HandleZoom();
+            }
+        #endregion
+
+        #region Event Callback Methods    
+            private void _OnPlayerZoomPressed()
+            {
+                cameraZoom.ChangeFOV(this);
+            }
+
+            private void _OnPlayerZoomReleased()
+            {
+                cameraZoom.ChangeFOV(this);
             }
         #endregion
 
@@ -71,14 +92,14 @@ namespace VHS
 
             void InitComponents()
             {
-                cameraZoom.Init(m_cam, camInputData);
+                cameraZoom.Init(m_cam);
                 cameraSway.Init(m_cam.transform);
             }
 
             void CalculateRotation()
             {
-                m_desiredYaw += camInputData.InputVector.x * sensitivity.x * Time.deltaTime;
-                m_desiredPitch -= camInputData.InputVector.y * sensitivity.y * Time.deltaTime;
+                m_desiredYaw += InputManager._LookAxis.x * sensitivity.x * Time.deltaTime;
+                m_desiredPitch -= InputManager._LookAxis.y * sensitivity.y * Time.deltaTime;
 
                 m_desiredPitch = Mathf.Clamp(m_desiredPitch,lookAngleMinMax.x,lookAngleMinMax.y);
             }
@@ -98,13 +119,6 @@ namespace VHS
             public void HandleSway(Vector3 _inputVector,float _rawXInput)
             {
                 cameraSway.SwayPlayer(_inputVector,_rawXInput);
-            }
-
-            void HandleZoom()
-            {
-                if(camInputData.ZoomClicked || camInputData.ZoomReleased)
-                    cameraZoom.ChangeFOV(this);
-
             }
 
             public void ChangeRunFOV(bool _returning)
