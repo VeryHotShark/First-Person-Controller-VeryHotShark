@@ -26,6 +26,10 @@ namespace VHS
         public static event Action _OnPlayerZoomPressed = delegate { };
         public static event Action _OnPlayerZoomReleased = delegate { };
 
+        public static event Action _OnPlayerShootPressed = delegate { };
+        public static event Action _OnPlayerShootReleased = delegate { };
+
+        public static event Action _OnPlayerReloadPressed = delegate { };
         public static event Action _OnPlayerJumpPressed = delegate { };
 
         private void OnEnable()
@@ -83,6 +87,21 @@ namespace VHS
         {
             if (context.performed) 
                 _OnPlayerJumpPressed();
+        }
+
+        public void OnPlayer_Shoot(InputAction.CallbackContext context)
+        {
+            if (context.started)
+                _OnPlayerShootPressed();
+
+            if (context.canceled)
+                _OnPlayerShootReleased();
+        }
+
+        public void OnPlayer_Reload(InputAction.CallbackContext context)
+        {
+            if(context.performed)
+                _OnPlayerReloadPressed();
         }
     }
 }

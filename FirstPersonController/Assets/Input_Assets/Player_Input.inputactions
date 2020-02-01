@@ -60,6 +60,22 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Player_Shoot",
+                    "type": "Button",
+                    "id": "efd8002d-c571-4705-aa08-02d61f3699d5",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Player_Reload",
+                    "type": "Button",
+                    "id": "3295ab70-6ba8-4bc1-ba88-34ca7e9ba6a0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -181,6 +197,28 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Player_Zoom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "84b6ca70-2d94-41bc-a85d-62406753474b",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "PressRelease",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Player_Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "be55e2ef-76fd-41a4-a63a-f3c254257631",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Player_Reload",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

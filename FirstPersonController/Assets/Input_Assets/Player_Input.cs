@@ -73,6 +73,22 @@ public class @Player_Input : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Player_Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""efd8002d-c571-4705-aa08-02d61f3699d5"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Player_Reload"",
+                    ""type"": ""Button"",
+                    ""id"": ""3295ab70-6ba8-4bc1-ba88-34ca7e9ba6a0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -196,6 +212,28 @@ public class @Player_Input : IInputActionCollection, IDisposable
                     ""action"": ""Player_Zoom"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""84b6ca70-2d94-41bc-a85d-62406753474b"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": ""PressRelease"",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Player_Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""be55e2ef-76fd-41a4-a63a-f3c254257631"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Player_Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -228,6 +266,8 @@ public class @Player_Input : IInputActionCollection, IDisposable
         m_Player_Gameplay_Player_Crouch = m_Player_Gameplay.FindAction("Player_Crouch", throwIfNotFound: true);
         m_Player_Gameplay_Player_Jump = m_Player_Gameplay.FindAction("Player_Jump", throwIfNotFound: true);
         m_Player_Gameplay_Player_Zoom = m_Player_Gameplay.FindAction("Player_Zoom", throwIfNotFound: true);
+        m_Player_Gameplay_Player_Shoot = m_Player_Gameplay.FindAction("Player_Shoot", throwIfNotFound: true);
+        m_Player_Gameplay_Player_Reload = m_Player_Gameplay.FindAction("Player_Reload", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -284,6 +324,8 @@ public class @Player_Input : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Gameplay_Player_Crouch;
     private readonly InputAction m_Player_Gameplay_Player_Jump;
     private readonly InputAction m_Player_Gameplay_Player_Zoom;
+    private readonly InputAction m_Player_Gameplay_Player_Shoot;
+    private readonly InputAction m_Player_Gameplay_Player_Reload;
     public struct Player_GameplayActions
     {
         private @Player_Input m_Wrapper;
@@ -295,6 +337,8 @@ public class @Player_Input : IInputActionCollection, IDisposable
         public InputAction @Player_Crouch => m_Wrapper.m_Player_Gameplay_Player_Crouch;
         public InputAction @Player_Jump => m_Wrapper.m_Player_Gameplay_Player_Jump;
         public InputAction @Player_Zoom => m_Wrapper.m_Player_Gameplay_Player_Zoom;
+        public InputAction @Player_Shoot => m_Wrapper.m_Player_Gameplay_Player_Shoot;
+        public InputAction @Player_Reload => m_Wrapper.m_Player_Gameplay_Player_Reload;
         public InputActionMap Get() { return m_Wrapper.m_Player_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -325,6 +369,12 @@ public class @Player_Input : IInputActionCollection, IDisposable
                 @Player_Zoom.started -= m_Wrapper.m_Player_GameplayActionsCallbackInterface.OnPlayer_Zoom;
                 @Player_Zoom.performed -= m_Wrapper.m_Player_GameplayActionsCallbackInterface.OnPlayer_Zoom;
                 @Player_Zoom.canceled -= m_Wrapper.m_Player_GameplayActionsCallbackInterface.OnPlayer_Zoom;
+                @Player_Shoot.started -= m_Wrapper.m_Player_GameplayActionsCallbackInterface.OnPlayer_Shoot;
+                @Player_Shoot.performed -= m_Wrapper.m_Player_GameplayActionsCallbackInterface.OnPlayer_Shoot;
+                @Player_Shoot.canceled -= m_Wrapper.m_Player_GameplayActionsCallbackInterface.OnPlayer_Shoot;
+                @Player_Reload.started -= m_Wrapper.m_Player_GameplayActionsCallbackInterface.OnPlayer_Reload;
+                @Player_Reload.performed -= m_Wrapper.m_Player_GameplayActionsCallbackInterface.OnPlayer_Reload;
+                @Player_Reload.canceled -= m_Wrapper.m_Player_GameplayActionsCallbackInterface.OnPlayer_Reload;
             }
             m_Wrapper.m_Player_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -350,6 +400,12 @@ public class @Player_Input : IInputActionCollection, IDisposable
                 @Player_Zoom.started += instance.OnPlayer_Zoom;
                 @Player_Zoom.performed += instance.OnPlayer_Zoom;
                 @Player_Zoom.canceled += instance.OnPlayer_Zoom;
+                @Player_Shoot.started += instance.OnPlayer_Shoot;
+                @Player_Shoot.performed += instance.OnPlayer_Shoot;
+                @Player_Shoot.canceled += instance.OnPlayer_Shoot;
+                @Player_Reload.started += instance.OnPlayer_Reload;
+                @Player_Reload.performed += instance.OnPlayer_Reload;
+                @Player_Reload.canceled += instance.OnPlayer_Reload;
             }
         }
     }
@@ -372,5 +428,7 @@ public class @Player_Input : IInputActionCollection, IDisposable
         void OnPlayer_Crouch(InputAction.CallbackContext context);
         void OnPlayer_Jump(InputAction.CallbackContext context);
         void OnPlayer_Zoom(InputAction.CallbackContext context);
+        void OnPlayer_Shoot(InputAction.CallbackContext context);
+        void OnPlayer_Reload(InputAction.CallbackContext context);
     }
 }
