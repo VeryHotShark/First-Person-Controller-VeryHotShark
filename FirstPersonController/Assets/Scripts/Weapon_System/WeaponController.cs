@@ -5,15 +5,17 @@ using UnityEngine;
 
 namespace VHS
 {
-    public class WeaponController : MonoBehaviour
+    public class WeaponController : PlayerComponent<WeaponController>
     {
         private Weapon[] m_weapons;
+        private AimController m_aimController;
 
         private bool m_shootHeld;
 
         private void Awake()
         {
             m_weapons = GetComponentsInChildren<Weapon>();
+            m_aimController = Player.FetchComponent<AimController>();
         }
 
         private void OnEnable()
@@ -34,7 +36,7 @@ namespace VHS
         {
             m_shootHeld = true;
 
-            foreach(Weapon weapon in m_weapons)
+            foreach (Weapon weapon in m_weapons)
                 weapon.OnShootButtonPressed();
         }
 
@@ -42,13 +44,13 @@ namespace VHS
         {
             m_shootHeld = false;
 
-            foreach(Weapon weapon in m_weapons)
+            foreach (Weapon weapon in m_weapons)
                 weapon.OnShootButtonReleased();
         }
 
         private void _OnPlayerReloadPressed()
         {
-            foreach(Weapon weapon in m_weapons)
+            foreach (Weapon weapon in m_weapons)
                 weapon.OnReloadButtonPressed();
         }
 
@@ -56,9 +58,9 @@ namespace VHS
 
         private void OnWeaponTick()
         {
-            if(m_shootHeld)
+            if (m_shootHeld)
             {
-                foreach(Weapon weapon in m_weapons)
+                foreach (Weapon weapon in m_weapons)
                     weapon.OnShootButtonHeld();
             }
         }

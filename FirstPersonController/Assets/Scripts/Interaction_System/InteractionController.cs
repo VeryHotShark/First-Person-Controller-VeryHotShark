@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace VHS
 {    
-    public class InteractionController : MonoBehaviour
+    public class InteractionController : PlayerComponent<InteractionController>
     {
         #region Variables    
             [Space, Header("Data")]

@@ -391,7 +391,7 @@ namespace VHS
 
                 protected virtual bool CanJump()
                 {
-                    return !m_isCrouching && m_characterController.isGrounded;
+                    return !m_isSliding && !m_isCrouching && m_characterController.isGrounded;
                 }
 
                 protected virtual bool CanCrouch()
@@ -472,6 +472,14 @@ namespace VHS
 
                 protected virtual void ReturnToInitHeight() // TODO make sure you cannot return when there is roof above
                 {
+                    if(CheckIfRoof())
+                    {
+                        DOTween.Kill(this);
+                        m_isSliding = false;
+                        HandleCrouch();
+                        return;
+                    }
+
                     if(!m_isSliding) return;
 
                     DOTween.Kill(this);

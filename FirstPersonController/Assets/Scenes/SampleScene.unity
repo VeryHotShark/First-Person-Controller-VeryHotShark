@@ -170,7 +170,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh14980
+  m_Name: pb_Mesh15450
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1359,6 +1359,28 @@ Transform:
   m_Father: {fileID: 260237139}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &609755298 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3843716869417167139, guid: b2a0df894ff4e104094394ec3de0a9b2,
+    type: 3}
+  m_PrefabInstance: {fileID: 3843716870447499010}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &609755299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609755298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6daad617c98b6b946a66b8ea59d94316, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxRayDistance: 1000
+  collisionLayer:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!43 &650013343
 Mesh:
   m_ObjectHideFlags: 0
@@ -1565,6 +1587,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20011c1aef2a0524fb0a103dfab1bd24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &826001147 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3843716870331872631, guid: b2a0df894ff4e104094394ec3de0a9b2,
+    type: 3}
+  m_PrefabInstance: {fileID: 3843716870447499010}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &826001148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 826001147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5db05cd3a2bb3854282f7f7df9ed4d27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &842506652
@@ -13829,7 +13869,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh15030
+  m_Name: pb_Mesh15496
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -15839,7 +15879,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh15138
+  m_Name: pb_Mesh15628
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -16033,7 +16073,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh14992
+  m_Name: pb_Mesh15462
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -19781,7 +19821,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh15472
+  m_Name: pb_Mesh15486
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -20013,7 +20053,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh15168
+  m_Name: pb_Mesh15668
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -20288,7 +20328,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh15052
+  m_Name: pb_Mesh15518
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -20805,6 +20845,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3843716869363435367, guid: b2a0df894ff4e104094394ec3de0a9b2,
+        type: 3}
+      propertyPath: cameraSway.swaySpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3843716869363435367, guid: b2a0df894ff4e104094394ec3de0a9b2,
+        type: 3}
+      propertyPath: cameraSway.swayAmount
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3843716870190975464, guid: b2a0df894ff4e104094394ec3de0a9b2,
         type: 3}
       propertyPath: m_IsActive
@@ -20819,6 +20869,21 @@ PrefabInstance:
         type: 3}
       propertyPath: slideTransitionDuration
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3843716870331872628, guid: b2a0df894ff4e104094394ec3de0a9b2,
+        type: 3}
+      propertyPath: moveSideSpeedPercent
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3843716870331872628, guid: b2a0df894ff4e104094394ec3de0a9b2,
+        type: 3}
+      propertyPath: moveBackwardsSpeedPercent
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3843716870331872628, guid: b2a0df894ff4e104094394ec3de0a9b2,
+        type: 3}
+      propertyPath: canRunThreshold
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3843716870331872631, guid: b2a0df894ff4e104094394ec3de0a9b2,
         type: 3}
