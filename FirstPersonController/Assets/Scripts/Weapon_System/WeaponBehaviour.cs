@@ -24,9 +24,10 @@ namespace VHS
 
         private void OnEnable()
         {
-            Weapon.OnWeaponReloadPressed += OnWeaponReloadPressed;
-            Weapon.OnWeaponShootReleased += OnWeaponShootReleased;
+            Weapon.OnWeaponReloadStarted += OnWeaponReloadStarted;
             Weapon.OnWeaponReloadCompleted += OnWeaponReloadCompleted;
+
+            Weapon.OnWeaponShootReleased += OnWeaponShootReleased;
 
             switch (Weapon.Data.TriggerType)
             {
@@ -41,9 +42,10 @@ namespace VHS
 
         private void OnDisable()
         {
-            Weapon.OnWeaponReloadPressed -= OnWeaponReloadPressed;
-            Weapon.OnWeaponShootReleased -= OnWeaponShootReleased;
+            Weapon.OnWeaponReloadStarted -= OnWeaponReloadStarted;
             Weapon.OnWeaponReloadCompleted -= OnWeaponReloadCompleted;
+
+            Weapon.OnWeaponShootReleased -= OnWeaponShootReleased;
 
             switch (Weapon.Data.TriggerType)
             {
@@ -82,15 +84,15 @@ namespace VHS
             _projectileInstance.OnFire(transform.root);
         }
 
-        public virtual void OnWeaponReloadPressed()
+        public virtual void OnWeaponReloadStarted()
         {
             Weapon.DuringReload = true;
-            Weapon.CurrentAmmoCount = Weapon.Data.AmmoCount;
         }
 
         public virtual void OnWeaponReloadCompleted()
         {
             Weapon.DuringReload = false;
+            Weapon.CurrentAmmoCount = Weapon.Data.AmmoCount;
         }
     }
 }

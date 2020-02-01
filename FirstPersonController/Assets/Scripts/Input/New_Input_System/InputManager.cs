@@ -27,6 +27,7 @@ namespace VHS
         public static event Action _OnPlayerZoomReleased = delegate { };
 
         public static event Action _OnPlayerShootPressed = delegate { };
+        public static event Action _OnPlayerShootHeld = delegate { };
         public static event Action _OnPlayerShootReleased = delegate { };
 
         public static event Action _OnPlayerReloadPressed = delegate { };

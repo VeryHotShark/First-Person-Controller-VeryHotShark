@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a59acfcbc53954f49b7c0ee4a2b08b75, type: 3}
-  m_Name: Data_Weapon
+  m_Script: {fileID: 11500000, guid: fb9ec7e9dee01184a93d43ad591e2a83, type: 3}
+  m_Name: SO_InputManager
   m_EditorClassIdentifier: 
-  triggerType: 1
-  ammoCount: 30
-  roundsPerSecond: 10
-  reloadDuration: 0.3
+  m_doubleTapThreshold: 0.2

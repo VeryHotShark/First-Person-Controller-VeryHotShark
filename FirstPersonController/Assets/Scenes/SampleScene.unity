@@ -16298,6 +16298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   so_managers:
   - {fileID: 11400000, guid: 661418b24e7b6bd4b8beb84c9feec963, type: 2}
+  - {fileID: 11400000, guid: f150789b723fe744fb0f5ebb8153307c, type: 2}
 --- !u!1 &1225693167
 GameObject:
   m_ObjectHideFlags: 0
@@ -16450,6 +16451,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1259710004}
   - component: {fileID: 1259710005}
+  - component: {fileID: 1259710006}
   m_Layer: 0
   m_Name: INPUT_MANAGER
   m_TagString: Untagged
@@ -16481,6 +16483,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e14bb64364bafbb47b6c0af78f289b2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1259710006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259710003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b196213432835bd469b68f0a5d2668e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1277769835
@@ -19767,7 +19781,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh16884
+  m_Name: pb_Mesh15472
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -20800,6 +20814,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3843716870331872628, guid: b2a0df894ff4e104094394ec3de0a9b2,
+        type: 3}
+      propertyPath: slideTransitionDuration
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 3843716870331872631, guid: b2a0df894ff4e104094394ec3de0a9b2,
         type: 3}

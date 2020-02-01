@@ -86,7 +86,7 @@ public class @Player_Input : IInputActionCollection, IDisposable
                     ""name"": ""Player_Reload"",
                     ""type"": ""Button"",
                     ""id"": ""3295ab70-6ba8-4bc1-ba88-34ca7e9ba6a0"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 }

@@ -43,6 +43,7 @@ namespace VHS
         public Action OnWeaponShootSucceed = delegate { };
 
         public Action OnWeaponReloadPressed = delegate { };
+        public Action OnWeaponReloadStarted = delegate { };
         public Action OnWeaponReloadCompleted = delegate { };
 
         public virtual void OnShootButtonPressed() => OnWeaponShootPressed();
