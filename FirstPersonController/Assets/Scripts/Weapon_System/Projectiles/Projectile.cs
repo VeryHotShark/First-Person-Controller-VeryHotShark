@@ -15,16 +15,17 @@ namespace VHS
         protected Vector3 m_lastPosition;
         protected Vector3 m_currentDirection;
         protected Transform m_owner;
+        protected RaycastHit m_hitInfo;
 
-        public bool IsPoolable => !gameObject.activeSelf;
+        public virtual bool IsPoolable => !gameObject.activeSelf;
         public Transform Transform => transform;
+
 
         protected virtual void Awake() => CastData();
         protected abstract void CastData();
 
         protected virtual void OnEnable() => UpdateManager._OnUpdate += OnUpdate;
         protected virtual void OnDisable() => UpdateManager._OnUpdate -= OnUpdate;
-        protected virtual void OnDestroy() => UpdateManager._OnUpdate -= OnUpdate;
 
         public virtual void OnUpdate(float _deltaTime)
         {
@@ -39,11 +40,11 @@ namespace VHS
 
         public virtual void CheckForCollision()
         {
-            bool _hitSomething = Physics.Linecast(m_lastPosition, transform.position, out RaycastHit hitInfo, collisionLayers);
+            bool _hitSomething = Physics.Linecast(m_lastPosition, transform.position, out m_hitInfo, collisionLayers);
 
             if (_hitSomething)
             {
-                if (hitInfo.collider.transform.IsChildOf(transform) || hitInfo.collider.transform.IsChildOf(m_owner))
+                if (m_hitInfo.collider.transform.IsChildOf(transform) || m_hitInfo.collider.transform.IsChildOf(m_owner))
                     return;
 
                 OnHit();

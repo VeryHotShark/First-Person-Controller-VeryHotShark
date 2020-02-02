@@ -6,29 +6,29 @@ namespace VHS
 {
     public class Player : MonoBehaviour
     {
-        private BaseComponent[] m_playerComponents;
+        private PlayerComponent[] m_playerComponents;
         
-        public T FetchComponent<T>() where T : BaseComponent
+        public T FetchComponent<T>() where T : PlayerComponent
         {
-            T temp = default(T);
+            T _temp = default(T);
 
-            foreach(BaseComponent baseComp in m_playerComponents)
+            foreach(PlayerComponent playerComponent in m_playerComponents)
             {
-                if(baseComp is T)
-                    temp = baseComp as T;
+                if(playerComponent is T)
+                    _temp = playerComponent as T;
             }
 
-            return temp;
+            return _temp;
         }
 
         private void Awake() => InitPlayerComponents();
 
         public void InitPlayerComponents()
         {
-            m_playerComponents = GetComponentsInChildren<BaseComponent>();
+            m_playerComponents = GetComponentsInChildren<PlayerComponent>();
 
-            foreach(BaseComponent _baseComp in m_playerComponents)
-                _baseComp.Init();
+            foreach(PlayerComponent _baseComp in m_playerComponents)
+                _baseComp.InitPlayerReference(this);
         }
     }
 }

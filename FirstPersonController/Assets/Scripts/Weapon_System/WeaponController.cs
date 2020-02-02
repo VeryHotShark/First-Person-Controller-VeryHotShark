@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace VHS
 {
-    public class WeaponController : PlayerComponent<WeaponController>
+    public class WeaponController : PlayerComponent
     {
         private Weapon[] m_weapons;
         private AimController m_aimController;
@@ -15,6 +15,10 @@ namespace VHS
         private void Awake()
         {
             m_weapons = GetComponentsInChildren<Weapon>();
+        }
+
+        private void Start()
+        {    
             m_aimController = Player.FetchComponent<AimController>();
         }
 
@@ -63,6 +67,9 @@ namespace VHS
                 foreach (Weapon weapon in m_weapons)
                     weapon.OnShootButtonHeld();
             }
+
+            foreach (Weapon weapon in m_weapons)
+                weapon.CurrentAimPoint = m_aimController.AimPoint;
         }
 
     }

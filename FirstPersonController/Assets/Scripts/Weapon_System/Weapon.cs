@@ -19,6 +19,7 @@ namespace VHS
         private int m_currentAmmoCount;
         private float m_timeSinceLastShot;
         private bool m_duringReload;
+        private Vector3 m_currentAimPoint;
 
         public int CurrentAmmoCount
         {
@@ -35,6 +36,12 @@ namespace VHS
         {
             get => m_duringReload;
             set => m_duringReload = value;
+        }
+
+        public Vector3 CurrentAimPoint
+        {
+            get => m_currentAimPoint;
+            set => m_currentAimPoint = value;
         }
 
         public Action OnWeaponShootPressed = delegate { };

@@ -4,28 +4,11 @@ using UnityEngine;
 
 namespace VHS
 {
-    public class PlayerComponent<T> : BaseComponent where T : PlayerComponent<T>
+    public class PlayerComponent : MonoBehaviour
     {
-        private bool m_cached;
-
         private Player m_player;
-        protected Player Player
-        {
-            get
-            {
-                if(!m_cached)
-                {
-                    m_cached = true;
-                    m_player = GetComponentInParent<Player>();
-                }
+        protected Player Player => m_player;
 
-                return m_player;
-            }
-        }
-    }
-
-    public class BaseComponent : MonoBehaviour
-    {
-        public void Init() => Debug.Log("Player Component: " + this.GetType());
+        public void InitPlayerReference(Player player) => m_player = player;
     }
 }

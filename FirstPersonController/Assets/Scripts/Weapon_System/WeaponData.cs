@@ -16,7 +16,7 @@ namespace VHS
     {
         [Space, Header("Weapon Data")]
 
-        [SerializeField] private WeaponTriggerType triggerType;
+        [SerializeField] private WeaponTriggerType triggerType = WeaponTriggerType.PullRelease;
         [SerializeField, Tooltip("-1 = infinite")] private int ammoCount = 0;
         [SerializeField] private int roundsPerSecond = 0;
         [SerializeField] private float reloadDuration = 0f;

@@ -8,7 +8,7 @@ namespace VHS
     public class SO_Singleton_Manager : Singleton<SO_Singleton_Manager>
     {
         [SerializeField][Label("Managers")]
-        private List<SO_Manager> so_managers;
+        private List<SO_Manager> so_managers = new List<SO_Manager>();
 
         private void OnEnable()
         {
