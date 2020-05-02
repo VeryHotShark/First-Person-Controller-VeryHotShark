@@ -17,6 +17,7 @@ namespace VHS
             [SerializeField] private bool multipleUse = false;
             [SerializeField] private bool isInteractable = true;
 
+            [SerializeField] private string tooltipMessage = "interact";
         #endregion
 
         #region Properties    
@@ -25,10 +26,12 @@ namespace VHS
             public bool HoldInteract => holdInteract;
             public bool MultipleUse => multipleUse;
             public bool IsInteractable => isInteractable;
+
+            public string TooltipMessage => tooltipMessage;
         #endregion
 
         #region Methods
-            public virtual void OnInteract()
+        public virtual void OnInteract()
             {
                 Debug.Log("INTERACTED: " + gameObject.name);
             }

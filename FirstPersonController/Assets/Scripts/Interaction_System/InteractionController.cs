@@ -11,6 +11,9 @@ namespace VHS
             [SerializeField] private InteractionInputData interactionInputData = null;
             [SerializeField] private InteractionData interactionData = null;
 
+            [Space, Header("UI")]
+            [SerializeField] private InteractionUIPanel uiPanel;
+
             [Space, Header("Ray Settings")]
             [SerializeField] private float rayDistance = 0f;
             [SerializeField] private float raySphereRadius = 0f;
@@ -58,18 +61,21 @@ namespace VHS
                         if(interactionData.IsEmpty())
                         {
                             interactionData.Interactable = _interactable;
+                            uiPanel.SetTooltip(_interactable.TooltipMessage);
                         }
                         else
                         {
                             if(!interactionData.IsSameInteractable(_interactable))
                             {
                                 interactionData.Interactable = _interactable;
+                                uiPanel.SetTooltip(_interactable.TooltipMessage);
                             }  
                         }
                     }
                 }
                 else
                 {
+                    uiPanel.ResetUI();
                     interactionData.ResetData();
                 }
 
@@ -91,6 +97,7 @@ namespace VHS
                 {
                     m_interacting = false;
                     m_holdTimer = 0f;
+                    uiPanel.UpdateProgressBar(0f);
                 }
 
                 if(m_interacting)
@@ -102,7 +109,10 @@ namespace VHS
                     {
                         m_holdTimer += Time.deltaTime;
 
-                        if(m_holdTimer >= interactionData.Interactable.HoldDuration)
+                        float heldPercent = m_holdTimer / interactionData.Interactable.HoldDuration;
+                        uiPanel.UpdateProgressBar(heldPercent);
+
+                        if(heldPercent > 1f)
                         {
                             interactionData.Interact();
                             m_interacting = false;
