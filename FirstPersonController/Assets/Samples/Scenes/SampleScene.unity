@@ -19704,5 +19704,10 @@ PrefabInstance:
       propertyPath: uiPanel
       value: 
       objectReference: {fileID: 1241756706}
+    - target: {fileID: 3843716870331872635, guid: b2a0df894ff4e104094394ec3de0a9b2,
+        type: 3}
+      propertyPath: rayDistance
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2a0df894ff4e104094394ec3de0a9b2, type: 3}
