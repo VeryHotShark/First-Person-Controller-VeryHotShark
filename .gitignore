@@ -37,8 +37,9 @@ sysinfo.txt
 *.unitypackage
 
 # Packed Addressables
-/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
+/FirstPersonController/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
+/FirstPersonController/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/Windows.meta
 
 # Temporary auto-generated Android Assets
-/[Aa]ssets/[Ss]treamingAssets/aa.meta
-/[Aa]ssets/[Ss]treamingAssets/aa/*
+/FirstPersonController/[Aa]ssets/[Ss]treamingAssets/aa.meta
+/FirstPersonController/[Aa]ssets/[Ss]treamingAssets/aa/*
