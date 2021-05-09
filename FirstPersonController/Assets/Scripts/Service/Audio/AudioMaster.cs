@@ -11,6 +11,7 @@ namespace VHS.Audio
             get { return "Audio/Master/AudioMaster.asset"; }
         }
 
+        public List<AudioClip> _bgmAudioClips = new List<AudioClip>();
         public List<AudioClip> _seAudioClips = new List<AudioClip>();
     }
 }
