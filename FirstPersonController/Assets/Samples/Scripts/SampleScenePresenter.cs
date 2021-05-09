@@ -18,6 +18,8 @@ namespace Sample
         async void Start()
         {
             await _audioService.Initialize();
+
+            _audioService.PlayBGM("bgm");
         }
     }
 }
