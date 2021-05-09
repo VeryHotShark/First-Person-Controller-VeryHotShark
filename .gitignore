@@ -35,3 +35,11 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+# Packed Addressables
+/FirstPersonController/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
+/FirstPersonController/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/Windows.meta
+
+# Temporary auto-generated Android Assets
+/FirstPersonController/[Aa]ssets/[Ss]treamingAssets/aa.meta
+/FirstPersonController/[Aa]ssets/[Ss]treamingAssets/aa/*
