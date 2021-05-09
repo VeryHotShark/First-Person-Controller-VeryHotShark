@@ -2,6 +2,8 @@
 using System;
 using System.Threading;
 using UnityEngine;
+using VContainer;
+using VHS.Audio;
 
 namespace Sample
 {
@@ -9,12 +11,24 @@ namespace Sample
     {
         [SerializeField] MeshRenderer _mesh;
         [SerializeField] Collider _collider;
+        [SerializeField] AudioSource _audioSource;
 
         CancellationTokenSource _cts = default;
 
+        AudioService _audioService;
+
+        [Inject]
+        public void Inject(AudioService audioService)
+        {
+            _audioService = audioService;
+        }
+
         public void OnButtonSelected()
         {
+
             _cts?.Cancel();
+
+            _audioService?.PlaySe("se_click", _audioSource);
 
             UniTask.Void(async () =>
             {
@@ -42,6 +56,7 @@ namespace Sample
         {
             _mesh = transform.GetComponent<MeshRenderer>();
             _collider = transform.GetComponent<Collider>();
+            _audioSource = transform.GetComponent<AudioSource>();
         }
     }
 }
