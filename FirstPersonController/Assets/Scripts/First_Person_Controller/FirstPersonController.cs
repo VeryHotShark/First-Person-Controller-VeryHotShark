@@ -2,7 +2,6 @@
 using System.Collections;
 using UniRx;
 using UnityEngine;
-using VContainer;
 using VHS.Audio;
 
 namespace VHS
@@ -13,6 +12,9 @@ namespace VHS
         #region Variables
         #region Private Serialized     
         #region Data
+        [Space, Header("Controller")]
+        [SerializeField] private FirstPersonSoundEffectController firstPersonSoundEffectController = null;
+
         [Space, Header("Data")]
         [SerializeField] private MovementInputData movementInputData = null;
         [SerializeField] private HeadBobData headBobData = null;
@@ -204,11 +206,6 @@ namespace VHS
 
         #region Custom Methods
         #region Initialize Methods
-        [Inject]
-        public void Inject(AudioService audioService)
-        {
-            m_audioService = audioService;
-        }
 
         protected virtual void GetComponents()
         {
@@ -249,7 +246,7 @@ namespace VHS
                 {
                     if (!m_duringCrouchAnimation)
                     {
-                        m_audioService.PlaySe("se_footstep_1");
+                        firstPersonSoundEffectController.FootstepSoundEffect.PlaySe();
                     }
                 }
             }).AddTo(this);
