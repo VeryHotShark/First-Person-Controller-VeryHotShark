@@ -10,13 +10,13 @@ namespace VHS.Audio
         Dictionary<string, AudioClip> _seAudioClips = new Dictionary<string, AudioClip>();
         Dictionary<string, AudioClip> _bgmAudioClips = new Dictionary<string, AudioClip>();
 
-        AudioSource _bgmAudioSource;
+        AudioSource _defaultAudioSource;
 
         public async UniTask Initialize()
         {
             await Preload();
 
-            _bgmAudioSource = Camera.main.transform.GetComponent<AudioSource>();
+            _defaultAudioSource = Camera.main.transform.GetComponent<AudioSource>();
         }
 
         async UniTask Preload()
@@ -35,15 +35,22 @@ namespace VHS.Audio
         public void PlayBGM(string key)
         {
             if (!_bgmAudioClips.ContainsKey(key)) return;
-            _bgmAudioSource.clip = _bgmAudioClips[key];
-            _bgmAudioSource.loop = true;
-            _bgmAudioSource.Play();
+            _defaultAudioSource.clip = _bgmAudioClips[key];
+            _defaultAudioSource.loop = true;
+            _defaultAudioSource.Play();
         }
 
-        public void PlaySe(string key, AudioSource audioSource)
+        public void PlaySe(string key, AudioSource audioSource = default)
         {
             if (!_seAudioClips.ContainsKey(key)) return;
-            audioSource.PlayOneShot(_seAudioClips[key]);
+            if (audioSource)
+            {
+                audioSource.PlayOneShot(_seAudioClips[key]);
+            }
+            else
+            {
+                _defaultAudioSource.PlayOneShot(_seAudioClips[key]);
+            }
         }
     }
 }
