@@ -22,12 +22,15 @@ namespace VHS.Audio
         async UniTask Preload()
         {
             var master = await Addressables.LoadAssetAsync<AudioMaster>(AudioMaster.FilePath);
-            foreach (var audioClip in master._seAudioClips)
+
+            foreach (var assetReference in master._seAudioClips)
             {
+                var audioClip = await assetReference.LoadAssetAsync<AudioClip>();
                 _seAudioClips.Add(audioClip.name, audioClip);
             }
-            foreach (var audioClip in master._bgmAudioClips)
+            foreach (var assetReference in master._bgmAudioClips)
             {
+                var audioClip = await assetReference.LoadAssetAsync<AudioClip>();
                 _bgmAudioClips.Add(audioClip.name, audioClip);
             }
         }

@@ -13,9 +13,24 @@ MonoBehaviour:
   m_Name: AudioMaster
   m_EditorClassIdentifier: 
   _bgmAudioClips:
-  - {fileID: 8300000, guid: 44cf1e8cbc6fc8c499e58792569d76e9, type: 3}
+  - m_AssetGUID: 44cf1e8cbc6fc8c499e58792569d76e9
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   _seAudioClips:
-  - {fileID: 8300000, guid: e7ab5f14df9a19c40ab5a267e5cb5395, type: 3}
-  - {fileID: 8300000, guid: 7157fd88b8f0d9d4480eeebee2e93c10, type: 3}
-  - {fileID: 8300000, guid: a870a64d549bedd42b2859aa12c685ef, type: 3}
-  - {fileID: 8300000, guid: 7c140166c76257b439e802e51210bd63, type: 3}
+  - m_AssetGUID: 7157fd88b8f0d9d4480eeebee2e93c10
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  - m_AssetGUID: a870a64d549bedd42b2859aa12c685ef
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  - m_AssetGUID: 7c140166c76257b439e802e51210bd63
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  - m_AssetGUID: e7ab5f14df9a19c40ab5a267e5cb5395
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
