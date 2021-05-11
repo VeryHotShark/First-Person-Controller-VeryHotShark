@@ -45,14 +45,20 @@ namespace VHS.Audio
 
         public void PlaySe(string key, AudioSource audioSource = default)
         {
+            PlaySe(key, 1.0f, audioSource);
+        }
+
+        public void PlaySe(string key, float volumeScale, AudioSource audioSource = default)
+        {
             if (!_seAudioClips.ContainsKey(key)) return;
+
             if (audioSource)
             {
-                audioSource.PlayOneShot(_seAudioClips[key]);
+                audioSource.PlayOneShot(_seAudioClips[key], volumeScale);
             }
             else
             {
-                _defaultAudioSource.PlayOneShot(_seAudioClips[key]);
+                _defaultAudioSource.PlayOneShot(_seAudioClips[key], volumeScale);
             }
         }
     }

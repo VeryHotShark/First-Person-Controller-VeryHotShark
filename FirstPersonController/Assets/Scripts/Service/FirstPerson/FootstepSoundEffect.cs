@@ -5,16 +5,24 @@ namespace VHS
 {
     public class FootstepSoundEffect
     {
-        ShuffleSoundEffect _shuffleSoundEffect;
+        ShuffleArray<string> _defaultFootstepSeKey;
+        AudioService _audioService;
+        AudioSource _audioSource;
+        FootstepSoundEffectData _data;
 
         public FootstepSoundEffect(AudioService audioService, FootstepSoundEffectData data, AudioSource audioSource = default)
         {
-            _shuffleSoundEffect = new ShuffleSoundEffect(audioService, data.NameArray, audioSource);
+            _audioService = audioService;
+            _data = data;
+            _audioSource = audioSource;
+
+            _defaultFootstepSeKey = new ShuffleArray<string>(data.NameArray);
         }
 
-        public void PlaySe()
+        public void PlaySe(float normalizationSpeed)
         {
-            _shuffleSoundEffect.PlaySe();
+            var volumeScale = _data._volumeCurve.Evaluate(Mathf.Clamp01(normalizationSpeed));
+            _audioService.PlaySe(_defaultFootstepSeKey.Get(), volumeScale, _audioSource);
         }
     }
 }

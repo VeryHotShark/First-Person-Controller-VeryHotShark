@@ -5,6 +5,7 @@ using UnityEngine.AddressableAssets;
 [CreateAssetMenu(fileName = "FootstepSoundEffectData", menuName = "FirstPersonController/FirstPerson/FootstepSoundEffectData", order = 0)]
 public class FootstepSoundEffectData : ScriptableObject
 {
+    public AnimationCurve _volumeCurve = new AnimationCurve();
     public List<AssetReference> _defaultFootstepSeAudioClips = new List<AssetReference>();
 
     public string[] NameArray

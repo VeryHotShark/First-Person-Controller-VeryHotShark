@@ -246,7 +246,7 @@ namespace VHS
                 {
                     if (!m_duringCrouchAnimation)
                     {
-                        firstPersonSoundEffectController.FootstepSoundEffect.PlaySe();
+                        firstPersonSoundEffectController.FootstepSoundEffect.PlaySe(m_finalSmoothCurrentSpeed / runSpeed);
                     }
                 }
             }).AddTo(this);
